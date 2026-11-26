@@ -273,21 +273,21 @@
   }
 
   /* ---------- 7. Gallery lightbox ---------- */
-  var lb = $('#lightbox'), items = $$('.g-item'), cur = 0, lastFocus;
+  var lb = $('#lightbox'), cur = 0, lastFocus;
+  function gItems() { return $$('.g-item'); }
   function show(i) {
-    cur = (i + items.length) % items.length;
+    var items = gItems(); cur = (i + items.length) % items.length;
     var img = $('img', items[cur]);
-    $('img', lb).src = img.src; $('img', lb).alt = img.alt;
-    $('figcaption', lb).textContent = $('figcaption', items[cur]).textContent;
+    $('img', lb).src = img.currentSrc || img.src; $('img', lb).alt = img.alt;
+    $('figcaption', lb).textContent = ($('figcaption', items[cur]) || {}).textContent || '';
   }
   function closeLb() { lb.hidden = true; document.body.classList.remove('lb-open'); if (lastFocus) lastFocus.focus(); }
-  if (lb && items.length) {
-    items.forEach(function (it, i) {
-      it.tabIndex = 0; it.setAttribute('role', 'button');
-      var open = function () { lastFocus = it; show(i); lb.hidden = false; document.body.classList.add('lb-open'); $('.lb-close', lb).focus(); };
-      it.addEventListener('click', open);
-      it.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
-    });
+  window.BE_prepGallery = function () { gItems().forEach(function (it) { it.tabIndex = 0; it.setAttribute('role', 'button'); }); };
+  if (lb) {
+    window.BE_prepGallery();
+    var openIt = function (it) { lastFocus = it; show(gItems().indexOf(it)); lb.hidden = false; document.body.classList.add('lb-open'); $('.lb-close', lb).focus(); };
+    document.addEventListener('click', function (e) { var it = e.target.closest && e.target.closest('.g-item'); if (it) openIt(it); });
+    document.addEventListener('keydown', function (e) { var it = e.target.closest && e.target.closest('.g-item'); if (it && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openIt(it); } });
     var step = function (d) { show(cur + d); };
     $('.lb-close', lb).addEventListener('click', closeLb);
     $('.lb-prev', lb).addEventListener('click', function () { step(-1); });

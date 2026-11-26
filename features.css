@@ -281,3 +281,25 @@
 @media (max-width:860px){.wa-float{width:50px;height:50px;bottom:86px;inset-inline-start:16px}.wa-float .ic{width:26px;height:26px}.wa-tip{display:none}}
 @media (prefers-reduced-motion:reduce){.wa-float::before{animation:none}}
 body.print-check .wa-float{display:none}
+
+/* ===== News bar (admin console) ===== */
+.news-bar{display:flex;align-items:center;gap:12px;height:38px;padding-inline:max(16px,calc((100vw - 1240px)/2));background:linear-gradient(90deg,#0a2140,#123a66);color:#e6eef7;font-size:.88rem;overflow:hidden}
+.nb-label{flex:none;display:inline-flex;align-items:center;gap:7px;padding:3px 11px;border-radius:999px;background:var(--green);color:#fff;font-weight:600;font-size:.78rem;letter-spacing:.04em}
+.nb-label i{width:7px;height:7px;border-radius:50%;background:#fff;animation:nbPulse 1.6s ease-in-out infinite}
+@keyframes nbPulse{50%{opacity:.3}}
+.nb-viewport{flex:1;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.nb-track{display:flex;width:max-content;animation:nbScroll 30s linear infinite}
+.nb-track.nb-static{animation:none;width:auto}
+[dir=rtl] .nb-track{animation-name:nbScrollR}
+.news-bar:hover .nb-track,.news-bar:focus-within .nb-track{animation-play-state:paused}
+.nb-dup{display:flex}
+.nb-item{white-space:nowrap;padding-inline:0 44px;color:#e6eef7;text-decoration:none;position:relative}
+.nb-item::after{content:"";position:absolute;inset-inline-end:18px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:#9fdc7b}
+.nb-static .nb-item::after{display:none}
+a.nb-item:hover{color:#9fdc7b;text-decoration:underline}
+.nb-close{flex:none;width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;font-size:1.1rem;line-height:1;cursor:pointer}
+.nb-close:hover{background:rgba(255,255,255,.22)}
+@keyframes nbScroll{to{transform:translateX(-50%)}}
+@keyframes nbScrollR{to{transform:translateX(50%)}}
+@media (prefers-reduced-motion:reduce){.nb-track{animation:none}}
+.g-live img{width:100%;height:100%;object-fit:cover}
