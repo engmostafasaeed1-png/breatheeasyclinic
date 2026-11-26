@@ -336,3 +336,31 @@
     }, { rootMargin: '200px 0px' }).observe(v);
   });
 })();
+
+/* ---------- 10. Newsletter sign-up (sent to the clinic inbox via FormSubmit) ---------- */
+(function () {
+  var f = document.getElementById('nlForm'); if (!f) return;
+  var C = window.CLINIC || {}, S = C.s || {}, msg = document.getElementById('nlMsg');
+  var btn = f.querySelector('button[type=submit] span');
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = f.email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || !f.consent.checked) {
+      msg.className = 'nl-msg err'; msg.textContent = S.nl_bad; return;
+    }
+    if (f._honey.value) return;
+    var data = {}; new FormData(f).forEach(function (v, k) { data[k] = v; });
+    data.subscribed_at = new Date().toISOString();
+    f.classList.add('busy'); btn.textContent = S.nl_sending; msg.textContent = '';
+    fetch('https://formsubmit.co/ajax/' + C.email, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data)
+    }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (b) { return { ok: r.ok, b: b }; }); })
+      .then(function (res) {
+        var ok = res.ok && String(res.b.success) !== 'false';
+        msg.className = 'nl-msg ' + (ok ? 'ok' : 'err'); msg.textContent = ok ? S.nl_ok : S.nl_err;
+        if (ok) f.reset();
+      })
+      .catch(function () { msg.className = 'nl-msg err'; msg.textContent = S.nl_err; })
+      .then(function () { f.classList.remove('busy'); btn.textContent = S.nl_btn; });
+  });
+})();
