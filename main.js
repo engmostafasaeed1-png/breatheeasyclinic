@@ -17,7 +17,13 @@
   }
   if (intro) {
     if (root.classList.contains('has-intro')) {
-      setTimeout(endIntro, 3300);
+      var iv = intro.querySelector('.intro-video'), introMs = 3300;
+      var saveData = navigator.connection && navigator.connection.saveData;
+      if (iv && !saveData) {
+        iv.play().then(function () { intro.classList.add('has-video'); }).catch(function () {});
+        introMs = 6200;
+      } else if (iv) { iv.remove(); }
+      setTimeout(endIntro, introMs);
       $('.intro-skip', intro).addEventListener('click', endIntro);
       document.addEventListener('keydown', function k(e) { if (e.key === 'Escape') { endIntro(); document.removeEventListener('keydown', k); } });
     } else { intro.remove(); }

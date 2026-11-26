@@ -1,0 +1,65 @@
+/* ===== Extra motion ===== */
+.hero{isolation:isolate}
+.airflow{position:absolute;inset:0;z-index:-1;pointer-events:none}
+
+/* headline words rise */
+.hero h1.split .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em}
+.hero h1.split .w>span{display:inline-block;transform:translateY(105%);animation:wordUp .9s cubic-bezier(.2,.7,.2,1) forwards}
+.has-intro .hero h1.split .w>span{animation-play-state:paused}
+@keyframes wordUp{to{transform:none}}
+
+/* parallax */
+.banner img,.panel-img img{translate:0 var(--py,0);scale:1.08}
+.hero-img{translate:0 var(--py,0)}
+
+/* magnetic buttons */
+.btn-primary,.sub-btn,.phone{transition:transform .25s cubic-bezier(.2,.7,.2,1),background .25s,box-shadow .25s,color .25s}
+
+/* marquee */
+.marquee{overflow:hidden;background:var(--navy);color:#dbe6f2;padding:14px 0;border-block:1px solid rgba(255,255,255,.08)}
+.marquee-track{display:flex;width:max-content;gap:0;animation:marq 38s linear infinite}
+[dir=rtl] .marquee-track{animation-name:marqR}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span{display:inline-flex;align-items:center;gap:22px;padding-inline-end:22px;font-size:1rem;white-space:nowrap}
+.marquee span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(76,174,28,.8)}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes marqR{to{transform:translateX(50%)}}
+
+/* breathe-with-us pacer */
+.pacer{display:flex;align-items:center;gap:16px;margin-top:26px;padding:12px 18px 12px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);width:max-content;max-width:100%;box-shadow:0 8px 24px -16px rgba(12,42,77,.35)}
+[dir=rtl] .pacer{padding:12px 12px 12px 18px}
+.pacer button{position:relative;width:52px;height:52px;border-radius:50%;border:0;cursor:pointer;background:var(--jade);display:grid;place-items:center;flex:none}
+.pacer .orb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#9fdc7b,var(--green));transition:transform 4s ease-in-out,box-shadow 4s ease-in-out}
+.pacer.in .orb{transform:scale(2);box-shadow:0 0 0 10px rgba(76,174,28,.12)}
+.pacer.out .orb{transform:scale(.9)}
+.pacer .pc-text small{display:block;color:var(--muted);font-size:.78rem}
+.pacer .pc-label{color:var(--navy);font-weight:500}
+.pacer.on{border-color:rgba(76,174,28,.4)}
+
+@media (prefers-reduced-motion:reduce){
+  .marquee-track{animation:none}
+  .banner img,.panel-img img,.hero-img{translate:none}
+  .pacer .orb{transition:none}
+}
+@media (max-width:860px){.pacer{width:100%}}
+
+/* intro video */
+.intro-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease}
+.intro.has-video .intro-video{opacity:1}
+.intro.has-video::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(8,29,54,.28) 100%);pointer-events:none}
+.intro .intro-inner{position:relative;z-index:2}
+.intro .intro-skip{z-index:3;background:rgba(255,255,255,.75);backdrop-filter:blur(6px)}
+.intro.has-video{align-items:flex-end}
+.intro.has-video .intro-inner{margin-bottom:7vh;padding:20px 34px 24px;border-radius:26px;background:rgba(250,248,243,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 20px 60px -20px rgba(8,29,54,.45);opacity:0;animation:introCopy .9s 3.1s ease forwards}
+.intro.has-video .intro-logo{width:76px;height:76px}
+.intro.has-video .intro-mark{width:54px}
+.intro.has-video .intro-name{margin-top:10px}
+.intro.has-video .intro-name strong{font-size:clamp(1.6rem,3.4vw,2.3rem)}
+.intro.has-video .intro-tag{margin-top:6px}
+.intro.has-video .intro-breath{margin-top:16px}
+@keyframes introCopy{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* header fit with Subscribe button */
+@media (max-width:1640px){.status{display:none!important}}
+.hero h1.rise{animation:h1rise 1s cubic-bezier(.2,.7,.2,1) .15s both}
+@keyframes h1rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
