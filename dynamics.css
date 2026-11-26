@@ -63,3 +63,24 @@
 @media (max-width:1640px){.status{display:none!important}}
 .hero h1.rise{animation:h1rise 1s cubic-bezier(.2,.7,.2,1) .15s both}
 @keyframes h1rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+/* living curtains photo */
+.banner-air{position:relative}
+.banner-air img{animation:airDrift 22s ease-in-out infinite alternate;transform-origin:30% 45%}
+@keyframes airDrift{0%{transform:scale(1.02) translate3d(0,0,0)}50%{transform:scale(1.07) translate3d(-1.2%,-.6%,0)}100%{transform:scale(1.1) translate3d(-2%,.4%,0)}}
+.air-sun{position:absolute;inset:-20%;z-index:1;pointer-events:none;mix-blend-mode:soft-light;
+  background:repeating-linear-gradient(115deg,rgba(255,244,214,0) 0 7%,rgba(255,244,214,.55) 9%,rgba(255,244,214,0) 13% 20%);
+  animation:sunSway 9s ease-in-out infinite alternate;opacity:.8}
+@keyframes sunSway{0%{transform:translateX(-4%) rotate(0deg);opacity:.55}50%{opacity:.95}100%{transform:translateX(5%) rotate(1.5deg);opacity:.6}}
+.air-dust{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.7;
+  background-image:radial-gradient(circle,rgba(255,255,255,.9) 0 1.2px,transparent 1.6px),radial-gradient(circle,rgba(255,250,230,.7) 0 1px,transparent 1.4px);
+  background-size:140px 120px,90px 110px;background-position:0 0,40px 60px;animation:dustFloat 26s linear infinite}
+@keyframes dustFloat{to{background-position:280px -240px,-130px -220px}}
+.banner-air::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,.18),transparent 40%);animation:breeze 6s ease-in-out infinite}
+@keyframes breeze{0%,100%{opacity:.2}50%{opacity:.55}}
+@media (prefers-reduced-motion:reduce){.banner-air img,.air-sun,.air-dust,.banner-air::after{animation:none}}
+
+.banner-air .air-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1.2s ease}
+.banner-air .air-video.on{opacity:1}
+.banner-air .air-video.on ~ img{visibility:hidden}
+.banner-air:has(.air-video.on) .air-sun{opacity:.35}
