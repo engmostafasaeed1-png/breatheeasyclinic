@@ -266,3 +266,18 @@
 .fsoc-facebook:hover{background:#1877f2;border-color:#1877f2;transform:translateY(-2px)}
 .fsoc-instagram:hover{background:#e1306c;border-color:#e1306c;transform:translateY(-2px)}
 .fc .fsoc{display:grid;padding:0}
+
+/* WhatsApp */
+.soc-whatsapp .ic{background:#25d366}
+.fsoc-whatsapp:hover{background:#25d366;border-color:#25d366;transform:translateY(-2px)}
+.wa-float{position:fixed;bottom:22px;inset-inline-start:22px;z-index:66;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#25d366;color:#fff;text-decoration:none;box-shadow:0 14px 30px -10px rgba(18,140,70,.65);transition:transform .25s}
+.wa-float .ic{width:30px;height:30px}
+.wa-float::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:waPing 2.8s ease-out infinite}
+@keyframes waPing{from{transform:scale(1);opacity:.8}to{transform:scale(1.55);opacity:0}}
+.wa-float:hover{transform:scale(1.07)}
+.wa-tip{position:absolute;inset-inline-start:70px;white-space:nowrap;background:#fff;color:var(--navy);font-size:.88rem;font-weight:500;padding:8px 14px;border-radius:999px;box-shadow:0 10px 24px -12px rgba(12,42,77,.45);opacity:0;transform:translateX(-6px);pointer-events:none;transition:opacity .25s,transform .25s}
+[dir=rtl] .wa-tip{transform:translateX(6px)}
+.wa-float:hover .wa-tip,.wa-float:focus-visible .wa-tip{opacity:1;transform:none}
+@media (max-width:860px){.wa-float{width:50px;height:50px;bottom:86px;inset-inline-start:16px}.wa-float .ic{width:26px;height:26px}.wa-tip{display:none}}
+@media (prefers-reduced-motion:reduce){.wa-float::before{animation:none}}
+body.print-check .wa-float{display:none}
