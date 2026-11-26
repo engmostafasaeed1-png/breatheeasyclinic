@@ -177,3 +177,8 @@
 .bg-video{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.5s var(--ease)}
 .bg-video.on{opacity:1}
 .doc{backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+
+/* email button */
+.phone.mail{background:#fff;color:var(--navy);border:1.5px solid var(--navy);font-size:1.02rem;letter-spacing:0}
+.phone.mail .ic{color:var(--green)}
+.phone.mail:hover{background:var(--navy);color:#fff}
