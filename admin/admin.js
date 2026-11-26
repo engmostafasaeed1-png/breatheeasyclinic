@@ -10,7 +10,7 @@
   /* ---------- language ---------- */
   var AR_T = {
     setup_h: 'لوحة التحكم غير متصلة بعد', setup_p: 'لم تتم إضافة رابط ومفتاح Supabase إلى الموقع بعد. بعد إضافتهما تصبح هذه الصفحة صفحة دخول المسؤول.',
-    login_h: 'لوحة تحكم العيادة', first_time: 'أول مرة؟ أنشئ حساب المسؤول', create_acc: 'إنشاء الحساب', back_login: 'لدي حساب بالفعل، تسجيل الدخول', login_p: 'سجّل الدخول بحساب المسؤول.', email: 'البريد الإلكتروني', password: 'كلمة المرور', sign_in: 'تسجيل الدخول',
+    login_h: 'لوحة تحكم العيادة', send_link: 'أرسل لي رابط تسجيل الدخول', use_pw: 'تسجيل الدخول بكلمة مرور بدلًا من ذلك', first_time: 'أول مرة؟ أنشئ حساب المسؤول', create_acc: 'إنشاء الحساب', back_login: 'لدي حساب بالفعل، تسجيل الدخول', login_p: 'سجّل الدخول بحساب المسؤول.', email: 'البريد الإلكتروني', password: 'كلمة المرور', sign_in: 'تسجيل الدخول',
     console: 'لوحة التحكم', tab_dash: 'الزوار', tab_news: 'شريط الأخبار', tab_photos: 'الصور', tab_settings: 'الإعدادات',
     view_site: 'عرض الموقع ↗', sign_out: 'تسجيل الخروج',
     dash_h: 'الزوار', dash_p: 'إحصاءات زيارات مجهولة الهوية من الموقع (بتوقيت القاهرة). زياراتك أنت من هذا الجهاز لا تُحتسب.',
@@ -29,13 +29,13 @@
   var EN_T = {};
   $$('[data-t]').forEach(function (el) { EN_T[el.getAttribute('data-t')] = el.textContent; });
   var M = {
-    en: { bad_login: 'Email or password is incorrect.', not_admin: 'This account is not an admin.', saved: 'Saved', deleted: 'Deleted', err: 'Something went wrong: ',
+    en: { bad_login: 'Email or password is incorrect.', not_admin: 'Signed in, but this account is not an admin yet. Ask your web developer to activate it.', need_email: 'Type your email address first.', sending: 'Sending…', link_sent: 'Done. Check your email (and the Spam folder) and click the sign-in link.', saved: 'Saved', deleted: 'Deleted', err: 'Something went wrong: ',
       live: 'Online now', today: 'Visitors today', views_today: 'page views', period_v: 'Visitors', period_p: 'Page views', newv: 'New visitors', all: 'All time',
       last: 'last %d days', day: 'Day', visitors: 'Visitors', views: 'Views', none: 'No data yet. Visits will appear here as people open the website.',
       edit: 'Edit', del: 'Delete', hide: 'Hide', show: 'Show', on: 'Visible', off: 'Hidden', until: 'until', confirm_del: 'Delete this permanently?', need_text: 'Write the news in English or Arabic.',
       uploading: 'Uploading…', need_file: 'Choose a photo first.', bad_phone: 'Phone numbers should be 11 digits, e.g. 01xxxxxxxxx.', bad_url: 'Check the link, it must start with https://',
       direct: 'Direct / typed', acc_made: 'Account created. Tell Claude so it can be made an admin, then sign in.', acc_closed: 'New accounts are switched off. Ask the website developer.', weak: 'Use at least 10 characters for the password.', peak: 'Busiest day:', mobile: 'Mobile', tablet: 'Tablet', desktop: 'Desktop', en: 'English', ar: 'Arabic', signed: 'Signed in as ' },
-    ar: { bad_login: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.', not_admin: 'هذا الحساب ليس حساب مسؤول.', saved: 'تم الحفظ', deleted: 'تم الحذف', err: 'حدث خطأ: ',
+    ar: { bad_login: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.', not_admin: 'تم تسجيل الدخول، لكن هذا الحساب لم يُفعَّل كمسؤول بعد. اطلب من مطوّر الموقع تفعيله.', need_email: 'اكتب بريدك الإلكتروني أولًا.', sending: 'جارٍ الإرسال…', link_sent: 'تم. افتح بريدك (وراجع مجلد Spam) واضغط رابط تسجيل الدخول.', saved: 'تم الحفظ', deleted: 'تم الحذف', err: 'حدث خطأ: ',
       live: 'متصل الآن', today: 'زوار اليوم', views_today: 'مشاهدة صفحة', period_v: 'الزوار', period_p: 'مشاهدات الصفحات', newv: 'زوار جدد', all: 'منذ البداية',
       last: 'آخر %d يوم', day: 'اليوم', visitors: 'الزوار', views: 'المشاهدات', none: 'لا توجد بيانات بعد. ستظهر الزيارات هنا عندما يفتح الناس الموقع.',
       edit: 'تعديل', del: 'حذف', hide: 'إخفاء', show: 'إظهار', on: 'ظاهر', off: 'مخفي', until: 'حتى', confirm_del: 'حذف نهائي؟', need_text: 'اكتب الخبر بالعربية أو الإنجليزية.',
@@ -64,12 +64,13 @@
   var sb = null, lastStats = null;
   setLang(lang);
   if (!cfg.url || !cfg.key || !window.supabase) { $('#scrSetup').hidden = false; return; }
-  sb = window.supabase.createClient(cfg.url, cfg.key, { auth: { persistSession: true, autoRefreshToken: true } });
+  sb = window.supabase.createClient(cfg.url, cfg.key, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: 'implicit' } });
+  sb.auth.onAuthStateChange(function (ev, session) { if (ev === 'SIGNED_IN' && session && $('#app').hidden) enter(session.user); });
 
   function showLogin(msg) { $('#app').hidden = true; $('#scrLogin').hidden = false; $('#loginMsg').textContent = msg || ''; }
   function enter(user) {
     sb.rpc('is_admin').then(function (r) {
-      if (r.error || r.data !== true) { sb.auth.signOut(); showLogin(m('not_admin')); return; }
+      if (r.error || r.data !== true) { var em = user.email || ''; sb.auth.signOut(); showLogin(m('not_admin') + ' (' + em + ')'); return; }
       try { localStorage.setItem('be-notrack', '1'); } catch (e) {}
       $('#scrLogin').hidden = true; $('#app').hidden = false;
       $('#whoami').textContent = m('signed') + (user.email || '');
@@ -78,31 +79,25 @@
   }
   sb.auth.getSession().then(function (r) { var s = r.data && r.data.session; if (s) enter(s.user); else showLogin(); });
 
-  var signUpMode = false;
-  EN_T.first_time = 'First time? Create the admin account'; EN_T.create_acc = 'Create account'; EN_T.back_login = 'I already have an account. Sign in';
-  $('#modeBtn').addEventListener('click', function () {
-    signUpMode = !signUpMode; $('#loginMsg').textContent = '';
-    var lb = $('#loginBtn'), mb = $('#modeBtn');
-    lb.setAttribute('data-t', signUpMode ? 'create_acc' : 'sign_in'); mb.setAttribute('data-t', signUpMode ? 'back_login' : 'first_time');
-    $('#loginForm').password.setAttribute('autocomplete', signUpMode ? 'new-password' : 'current-password');
-    setLang(lang);
-  });
   $('#loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
     var f = e.target, btn = $('button[type=submit]', f); btn.disabled = true; $('#loginMsg').textContent = '';
-    if (signUpMode) {
-      if (f.password.value.length < 10) { btn.disabled = false; $('#loginMsg').textContent = m('weak'); return; }
-      sb.auth.signUp({ email: f.email.value.trim(), password: f.password.value }).then(function (r) {
-        btn.disabled = false; f.password.value = '';
-        if (r.error) { $('#loginMsg').textContent = /not allowed|disabled/i.test(r.error.message) ? m('acc_closed') : m('err') + r.error.message; return; }
-        sb.auth.signOut(); $('#loginMsg').textContent = m('acc_made'); $('#modeBtn').click(); $('#loginMsg').textContent = m('acc_made');
-      });
-      return;
-    }
     sb.auth.signInWithPassword({ email: f.email.value.trim(), password: f.password.value }).then(function (r) {
       btn.disabled = false; f.password.value = '';
       if (r.error) { $('#loginMsg').textContent = m('bad_login'); return; }
       enter(r.data.user);
+    });
+  });
+  EN_T.send_link = 'Email me a sign-in link'; EN_T.use_pw = 'Sign in with a password instead';
+  $('#linkBtn').addEventListener('click', function () {
+    var f = $('#loginForm'), email = f.email.value.trim(), btn = $('#linkBtn'), msg = $('#loginMsg');
+    msg.className = 'form-msg';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = m('need_email'); f.email.focus(); return; }
+    btn.disabled = true; msg.textContent = m('sending');
+    sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: location.origin + '/admin/', shouldCreateUser: true } }).then(function (r) {
+      btn.disabled = false;
+      if (r.error) { msg.className = 'form-msg err'; msg.textContent = m('err') + r.error.message; return; }
+      msg.className = 'form-msg ok'; msg.textContent = m('link_sent');
     });
   });
   $('#signOut').addEventListener('click', function () { sb.auth.signOut().then(function () { showLogin(); }); });

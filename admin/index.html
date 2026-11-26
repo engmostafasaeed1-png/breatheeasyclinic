@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="admin.css?v=1">
+<link rel="stylesheet" href="admin.css?v=3">
 </head>
 <body>
 
@@ -29,9 +29,11 @@
     <h1 data-t="login_h">Clinic admin</h1>
     <p class="muted" data-t="login_p">Sign in with the admin account.</p>
     <label><span data-t="email">Email</span><input type="email" name="email" autocomplete="username" required></label>
-    <label><span data-t="password">Password</span><input type="password" name="password" autocomplete="current-password" required></label>
-    <button class="btn" type="submit" id="loginBtn" data-t="sign_in">Sign in</button>
-    <button class="link" type="button" id="modeBtn" data-t="first_time">First time? Create the admin account</button>
+    <button class="btn" type="button" id="linkBtn" data-t="send_link">Email me a sign-in link</button>
+    <details class="pw-box"><summary data-t="use_pw">Sign in with a password instead</summary>
+      <label><span data-t="password">Password</span><input type="password" name="password" autocomplete="current-password"></label>
+      <button class="btn ghost" type="submit" id="loginBtn" data-t="sign_in">Sign in</button>
+    </details>
     <p class="form-msg" id="loginMsg" role="alert"></p>
     <button class="link lang-btn" type="button" data-lang-toggle>العربية</button>
   </form>
@@ -140,6 +142,6 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="vendor/supabase.js?v=2.119.2"></script>
 <script src="../config.js?v=admin"></script>
-<script src="admin.js?v=2"></script>
+<script src="admin.js?v=3"></script>
 </body>
 </html>
