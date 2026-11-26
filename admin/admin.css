@@ -156,3 +156,6 @@ textarea{resize:vertical}
 .pw-box[open]{display:flex;flex-direction:column;gap:12px}
 .pw-box[open] summary{margin-bottom:0}
 .form-msg.ok{color:var(--green-d)}
+
+.code-box{display:flex;flex-direction:column;gap:10px;text-align:start}
+.code-box input{font-size:1.3rem;letter-spacing:.3em;text-align:center}
