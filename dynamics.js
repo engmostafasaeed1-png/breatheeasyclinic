@@ -190,4 +190,14 @@
     }, 4000);
   }
 
+  /* 12. Map: copy the clinic address */
+  var mc = document.querySelector('.map-copy');
+  if (mc) mc.addEventListener('click', function () {
+    var txt = mc.getAttribute('data-addr'), lbl = mc.querySelector('span'), old = lbl.textContent;
+    function done() { mc.classList.add('ok'); lbl.textContent = mc.getAttribute('data-done'); setTimeout(function () { mc.classList.remove('ok'); lbl.textContent = old; }, 2200); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, legacy);
+    else legacy();
+    function legacy() { var ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} ta.remove(); }
+  });
+
 })();
