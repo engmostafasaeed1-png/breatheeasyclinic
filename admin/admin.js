@@ -10,7 +10,7 @@
   /* ---------- language ---------- */
   var AR_T = {
     setup_h: 'لوحة التحكم غير متصلة بعد', setup_p: 'لم تتم إضافة رابط ومفتاح Supabase إلى الموقع بعد. بعد إضافتهما تصبح هذه الصفحة صفحة دخول المسؤول.',
-    login_h: 'لوحة تحكم العيادة', login_p: 'سجّل الدخول بحساب المسؤول.', email: 'البريد الإلكتروني', password: 'كلمة المرور', sign_in: 'تسجيل الدخول',
+    login_h: 'لوحة تحكم العيادة', first_time: 'أول مرة؟ أنشئ حساب المسؤول', create_acc: 'إنشاء الحساب', back_login: 'لدي حساب بالفعل، تسجيل الدخول', login_p: 'سجّل الدخول بحساب المسؤول.', email: 'البريد الإلكتروني', password: 'كلمة المرور', sign_in: 'تسجيل الدخول',
     console: 'لوحة التحكم', tab_dash: 'الزوار', tab_news: 'شريط الأخبار', tab_photos: 'الصور', tab_settings: 'الإعدادات',
     view_site: 'عرض الموقع ↗', sign_out: 'تسجيل الخروج',
     dash_h: 'الزوار', dash_p: 'إحصاءات زيارات مجهولة الهوية من الموقع (بتوقيت القاهرة). زياراتك أنت من هذا الجهاز لا تُحتسب.',
@@ -34,13 +34,13 @@
       last: 'last %d days', day: 'Day', visitors: 'Visitors', views: 'Views', none: 'No data yet. Visits will appear here as people open the website.',
       edit: 'Edit', del: 'Delete', hide: 'Hide', show: 'Show', on: 'Visible', off: 'Hidden', until: 'until', confirm_del: 'Delete this permanently?', need_text: 'Write the news in English or Arabic.',
       uploading: 'Uploading…', need_file: 'Choose a photo first.', bad_phone: 'Phone numbers should be 11 digits, e.g. 01xxxxxxxxx.', bad_url: 'Check the link, it must start with https://',
-      direct: 'Direct / typed', peak: 'Busiest day:', mobile: 'Mobile', tablet: 'Tablet', desktop: 'Desktop', en: 'English', ar: 'Arabic', signed: 'Signed in as ' },
+      direct: 'Direct / typed', acc_made: 'Account created. Tell Claude so it can be made an admin, then sign in.', acc_closed: 'New accounts are switched off. Ask the website developer.', weak: 'Use at least 10 characters for the password.', peak: 'Busiest day:', mobile: 'Mobile', tablet: 'Tablet', desktop: 'Desktop', en: 'English', ar: 'Arabic', signed: 'Signed in as ' },
     ar: { bad_login: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.', not_admin: 'هذا الحساب ليس حساب مسؤول.', saved: 'تم الحفظ', deleted: 'تم الحذف', err: 'حدث خطأ: ',
       live: 'متصل الآن', today: 'زوار اليوم', views_today: 'مشاهدة صفحة', period_v: 'الزوار', period_p: 'مشاهدات الصفحات', newv: 'زوار جدد', all: 'منذ البداية',
       last: 'آخر %d يوم', day: 'اليوم', visitors: 'الزوار', views: 'المشاهدات', none: 'لا توجد بيانات بعد. ستظهر الزيارات هنا عندما يفتح الناس الموقع.',
       edit: 'تعديل', del: 'حذف', hide: 'إخفاء', show: 'إظهار', on: 'ظاهر', off: 'مخفي', until: 'حتى', confirm_del: 'حذف نهائي؟', need_text: 'اكتب الخبر بالعربية أو الإنجليزية.',
       uploading: 'جارٍ الرفع…', need_file: 'اختر صورة أولًا.', bad_phone: 'رقم الهاتف يجب أن يكون ١١ رقمًا مثل 01xxxxxxxxx.', bad_url: 'تأكد من الرابط، يجب أن يبدأ بـ https://',
-      direct: 'مباشر / كتابة الرابط', peak: 'أكثر يوم زيارة:', mobile: 'موبايل', tablet: 'تابلت', desktop: 'كمبيوتر', en: 'الإنجليزية', ar: 'العربية', signed: 'مسجّل باسم ' }
+      direct: 'مباشر / كتابة الرابط', acc_made: 'تم إنشاء الحساب. أخبر Claude ليتم تفعيله كمسؤول، ثم سجّل الدخول.', acc_closed: 'إنشاء حسابات جديدة متوقف. تواصل مع مطوّر الموقع.', weak: 'استخدم ١٠ أحرف على الأقل لكلمة المرور.', peak: 'أكثر يوم زيارة:', mobile: 'موبايل', tablet: 'تابلت', desktop: 'كمبيوتر', en: 'الإنجليزية', ar: 'العربية', signed: 'مسجّل باسم ' }
   };
   var lang = 'en';
   try { lang = localStorage.getItem('be-admin-lang') || ((navigator.language || '').slice(0, 2) === 'ar' ? 'ar' : 'en'); } catch (e) {}
@@ -78,9 +78,27 @@
   }
   sb.auth.getSession().then(function (r) { var s = r.data && r.data.session; if (s) enter(s.user); else showLogin(); });
 
+  var signUpMode = false;
+  EN_T.first_time = 'First time? Create the admin account'; EN_T.create_acc = 'Create account'; EN_T.back_login = 'I already have an account. Sign in';
+  $('#modeBtn').addEventListener('click', function () {
+    signUpMode = !signUpMode; $('#loginMsg').textContent = '';
+    var lb = $('#loginBtn'), mb = $('#modeBtn');
+    lb.setAttribute('data-t', signUpMode ? 'create_acc' : 'sign_in'); mb.setAttribute('data-t', signUpMode ? 'back_login' : 'first_time');
+    $('#loginForm').password.setAttribute('autocomplete', signUpMode ? 'new-password' : 'current-password');
+    setLang(lang);
+  });
   $('#loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
     var f = e.target, btn = $('button[type=submit]', f); btn.disabled = true; $('#loginMsg').textContent = '';
+    if (signUpMode) {
+      if (f.password.value.length < 10) { btn.disabled = false; $('#loginMsg').textContent = m('weak'); return; }
+      sb.auth.signUp({ email: f.email.value.trim(), password: f.password.value }).then(function (r) {
+        btn.disabled = false; f.password.value = '';
+        if (r.error) { $('#loginMsg').textContent = /not allowed|disabled/i.test(r.error.message) ? m('acc_closed') : m('err') + r.error.message; return; }
+        sb.auth.signOut(); $('#loginMsg').textContent = m('acc_made'); $('#modeBtn').click(); $('#loginMsg').textContent = m('acc_made');
+      });
+      return;
+    }
     sb.auth.signInWithPassword({ email: f.email.value.trim(), password: f.password.value }).then(function (r) {
       btn.disabled = false; f.password.value = '';
       if (r.error) { $('#loginMsg').textContent = m('bad_login'); return; }
