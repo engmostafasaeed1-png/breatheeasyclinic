@@ -174,6 +174,7 @@
       var st = 0;
       Array.prototype.forEach.call(jSteps, function (s, i) { if (s.getBoundingClientRect().top < mid) st = i + 1; });
       if (reduce) st = 4;
+      jr.style.setProperty('--jp', p.toFixed(3));
       jr.setAttribute('data-stage', st);
       Array.prototype.forEach.call(jSteps, function (s, i) { s.classList.toggle('on', reduce || i + 1 === st); });
       jt = false;
