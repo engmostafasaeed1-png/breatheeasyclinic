@@ -134,3 +134,55 @@
   .swipe::after,.reveal .eyebrow::before{transform:none}
   .day.stagger,.qa.stagger{opacity:1;transform:none}
 }
+
+/* ===== Follow a breath (scroll story) ===== */
+.journey{position:relative;color:#fff;background:radial-gradient(900px 640px at 18% 35%,rgba(18,58,102,.95),transparent 65%),radial-gradient(700px 500px at 90% 80%,rgba(76,174,28,.14),transparent 60%),#0a2140;overflow:visible}
+.journey .eyebrow{color:#9fdc7b}.journey .eyebrow::before{background:#9fdc7b}
+.journey .sec-head h2{color:#fff}.journey .sec-head p{color:#c3d1e1}
+.journey .swipe::after{background:linear-gradient(90deg,#7fd6e6,#9fdc7b)}
+.jr-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:start}
+.jr-stage{position:sticky;top:11vh;height:78vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.jr-svg{width:100%;max-width:430px;height:auto;max-height:62vh;overflow:visible}
+.jr-steps{list-style:none;margin:0;padding:0}
+.jr-step{min-height:74vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;opacity:.25;transform:translateY(10px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.jr-step:first-child{min-height:64vh}
+.jr-step:last-child{min-height:66vh}
+.jr-step.on{opacity:1;transform:none}
+.jr-num{font-size:.85rem;font-weight:600;letter-spacing:.22em;color:#9fdc7b;padding:4px 12px;border:1px solid rgba(159,220,123,.35);border-radius:999px}
+.jr-step h3{font-size:clamp(1.45rem,2.5vw,2.05rem);color:#fff;margin:.55em 0 .4em;line-height:1.25}
+.jr-step p{color:#c3d1e1;font-size:1.05rem;line-height:1.8;max-width:46ch;margin:0}
+.jr-cta{margin-top:22px}
+.jr-lungs{transform-box:fill-box;transform-origin:50% 25%;transition:transform 1.8s ease-in-out}
+.journey.puff .jr-lungs{transform:scale(1.035)}
+.jr-lung{fill:rgba(255,255,255,.045);stroke:rgba(159,220,123,.38);stroke-width:1.5;transition:fill 1.2s ease}
+.journey[data-stage="3"] .jr-lung,.journey[data-stage="4"] .jr-lung{fill:rgba(76,174,28,.13)}
+.jr-tube{fill:none;stroke:rgba(255,255,255,.12);stroke-width:18;stroke-linecap:round}
+.jr-rings path{stroke:rgba(255,255,255,.2);stroke-width:2;fill:none}
+.jr-base path{fill:none;stroke:rgba(255,255,255,.12);stroke-linecap:round}
+.jr-air{fill:none;stroke:url(#jrAir);stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1;filter:drop-shadow(0 0 5px rgba(127,214,230,.65))}
+.jr-flow{fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-dasharray:2 14;opacity:0;transition:opacity .6s;animation:jrFlow 1.4s linear infinite}
+.journey:not([data-stage="0"]) .jr-flow{opacity:.55}
+.journey[data-stage="4"] .jr-flow{animation-direction:reverse}
+@keyframes jrFlow{to{stroke-dashoffset:-32}}
+.jr-alv{transform-box:fill-box;transform-origin:center;opacity:.12}
+.jr-alv circle{fill:#9fdc7b;filter:drop-shadow(0 0 4px rgba(159,220,123,.7))}
+.jr-lbl text{fill:#b9c8da;font:500 13px "Readex Pro",sans-serif;opacity:.35;transition:opacity .5s,fill .5s}
+.jr-lbl path{stroke:rgba(255,255,255,.28);stroke-width:1;fill:none;opacity:.35;transition:opacity .5s}
+.journey[data-stage="1"] .jr-lbl[data-s="1"] text,.journey[data-stage="2"] .jr-lbl[data-s="2"] text,.journey[data-stage="3"] .jr-lbl[data-s="3"] text,.journey[data-stage="4"] .jr-lbl text{fill:#9fdc7b;opacity:1}
+.journey[data-stage="1"] .jr-lbl[data-s="1"] path,.journey[data-stage="2"] .jr-lbl[data-s="2"] path,.journey[data-stage="4"] .jr-lbl path{opacity:1}
+.jr-meter{margin:18px 0 0;text-align:center;color:#c3d1e1;font-size:.92rem;line-height:1.5}
+.jr-count{display:block;font-size:2.1rem;font-weight:600;color:#fff;line-height:1.1;font-variant-numeric:tabular-nums}
+.jr-meter small{display:block;color:#8ea3bb;font-size:.8rem;margin-top:2px}
+@media (max-width:860px){
+  .jr-grid{grid-template-columns:1fr;gap:0}
+  .jr-stage{top:70px;height:auto;z-index:2;padding:16px 0 26px;margin-inline:calc(50% - 50vw);background:linear-gradient(rgba(10,33,64,.94) 80%,rgba(10,33,64,0));-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .jr-svg{max-height:33vh}
+  .jr-meter{margin-top:6px;font-size:.8rem}.jr-count{font-size:1.4rem}.jr-meter small{display:none}
+  .jr-step{min-height:62vh;justify-content:flex-start;padding-top:8vh}
+  .jr-step:first-child,.jr-step:last-child{min-height:56vh}
+}
+@media (prefers-reduced-motion:reduce){
+  .jr-flow{animation:none}
+  .jr-step{min-height:auto;padding:22px 0;opacity:1;transform:none}
+  .jr-stage{position:relative;top:0;height:auto}
+}

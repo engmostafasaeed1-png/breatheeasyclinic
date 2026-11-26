@@ -161,4 +161,32 @@
     Array.prototype.forEach.call(g.querySelectorAll('.qa'), function (el, i) { el.style.setProperty('--d', (200 + i * 110) + 'ms'); el.classList.add('stagger'); });
   });
 
+  /* 11. Follow a breath: scroll-driven airway story */
+  var jr = document.getElementById('journey');
+  if (jr) {
+    var jSteps = jr.querySelectorAll('.jr-step'), jAirs = jr.querySelectorAll('.jr-air'), jAlv = jr.querySelectorAll('.jr-alv'), jList = jr.querySelector('.jr-steps');
+    var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; }, jt = false;
+    function jUpd() {
+      var vh = window.innerHeight, mid = vh * (window.innerWidth < 861 ? 0.72 : 0.55), r = jList.getBoundingClientRect();
+      var p = reduce ? 1 : clamp((mid - r.top) / r.height);
+      Array.prototype.forEach.call(jAirs, function (a) { var s0 = +a.dataset.a, s1 = +a.dataset.b; a.style.strokeDashoffset = (1 - clamp((p - s0) / (s1 - s0))).toFixed(3); });
+      Array.prototype.forEach.call(jAlv, function (g, i) { var f = clamp((p - 0.5 - (i % 3) * 0.025) / 0.14); g.style.opacity = (0.12 + 0.88 * f).toFixed(2); g.style.transform = 'scale(' + (0.55 + 0.45 * f).toFixed(2) + ')'; });
+      var st = 0;
+      Array.prototype.forEach.call(jSteps, function (s, i) { if (s.getBoundingClientRect().top < mid) st = i + 1; });
+      if (reduce) st = 4;
+      jr.setAttribute('data-stage', st);
+      Array.prototype.forEach.call(jSteps, function (s, i) { s.classList.toggle('on', reduce || i + 1 === st); });
+      jt = false;
+    }
+    window.addEventListener('scroll', function () { if (!jt) { jt = true; requestAnimationFrame(jUpd); } }, { passive: true });
+    window.addEventListener('resize', jUpd);
+    jUpd();
+    /* breath counter: ~15 breaths a minute, lungs gently inflate with each one */
+    var jc = jr.querySelector('.jr-count'), n = 0, nf = AR ? new Intl.NumberFormat('ar-EG') : new Intl.NumberFormat('en-GB');
+    setInterval(function () {
+      n++; jc.textContent = nf.format(n);
+      if (!reduce) { jr.classList.add('puff'); setTimeout(function () { jr.classList.remove('puff'); }, 1800); }
+    }, 4000);
+  }
+
 })();
