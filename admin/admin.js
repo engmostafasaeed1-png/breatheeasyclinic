@@ -29,13 +29,13 @@
   var EN_T = {};
   $$('[data-t]').forEach(function (el) { EN_T[el.getAttribute('data-t')] = el.textContent; });
   var M = {
-    en: { bad_login: 'Email or password is incorrect.', not_admin: 'Signed in, but this account is not an admin yet. Ask your web developer to activate it.', need_email: 'Type your email address first.', need_code: 'Type the 6-digit code from the email.', bad_code: 'That code is wrong or expired. Request a new email.', sending: 'Sending…', link_sent: 'Done. Check your email (and Spam): click the link, or type the code below.', saved: 'Saved', deleted: 'Deleted', err: 'Something went wrong: ',
+    en: { bad_login: 'Email or password is incorrect.', not_admin: 'Signed in, but this account is not an admin yet. Ask your web developer to activate it.', need_email: 'Type your email address first.', link_sent2: 'Done. Open the NEWEST email from Supabase (check Spam) and click its link within a few minutes.', need_code: 'Type the 6-digit code from the email.', bad_code: 'That code is wrong or expired. Request a new email.', sending: 'Sending…', link_sent: 'Done. Check your email (and Spam): click the link, or type the code below.', saved: 'Saved', deleted: 'Deleted', err: 'Something went wrong: ',
       live: 'Online now', today: 'Visitors today', views_today: 'page views', period_v: 'Visitors', period_p: 'Page views', newv: 'New visitors', all: 'All time',
       last: 'last %d days', day: 'Day', visitors: 'Visitors', views: 'Views', none: 'No data yet. Visits will appear here as people open the website.',
       edit: 'Edit', del: 'Delete', hide: 'Hide', show: 'Show', on: 'Visible', off: 'Hidden', until: 'until', confirm_del: 'Delete this permanently?', need_text: 'Write the news in English or Arabic.',
       uploading: 'Uploading…', need_file: 'Choose a photo first.', bad_phone: 'Phone numbers should be 11 digits, e.g. 01xxxxxxxxx.', bad_url: 'Check the link, it must start with https://',
       direct: 'Direct / typed', acc_made: 'Account created. Tell Claude so it can be made an admin, then sign in.', acc_closed: 'New accounts are switched off. Ask the website developer.', weak: 'Use at least 10 characters for the password.', peak: 'Busiest day:', mobile: 'Mobile', tablet: 'Tablet', desktop: 'Desktop', en: 'English', ar: 'Arabic', signed: 'Signed in as ' },
-    ar: { bad_login: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.', not_admin: 'تم تسجيل الدخول، لكن هذا الحساب لم يُفعَّل كمسؤول بعد. اطلب من مطوّر الموقع تفعيله.', need_email: 'اكتب بريدك الإلكتروني أولًا.', need_code: 'اكتب الكود المكوّن من ٦ أرقام من البريد.', bad_code: 'الكود غير صحيح أو انتهت صلاحيته. اطلب رسالة جديدة.', sending: 'جارٍ الإرسال…', link_sent: 'تم. افتح بريدك (وراجع Spam): اضغط الرابط أو اكتب الكود بالأسفل.', saved: 'تم الحفظ', deleted: 'تم الحذف', err: 'حدث خطأ: ',
+    ar: { bad_login: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.', not_admin: 'تم تسجيل الدخول، لكن هذا الحساب لم يُفعَّل كمسؤول بعد. اطلب من مطوّر الموقع تفعيله.', need_email: 'اكتب بريدك الإلكتروني أولًا.', link_sent2: 'تم. افتح أحدث رسالة من Supabase (وراجع Spam) واضغط الرابط خلال دقائق.', need_code: 'اكتب الكود المكوّن من ٦ أرقام من البريد.', bad_code: 'الكود غير صحيح أو انتهت صلاحيته. اطلب رسالة جديدة.', sending: 'جارٍ الإرسال…', link_sent: 'تم. افتح بريدك (وراجع Spam): اضغط الرابط أو اكتب الكود بالأسفل.', saved: 'تم الحفظ', deleted: 'تم الحذف', err: 'حدث خطأ: ',
       live: 'متصل الآن', today: 'زوار اليوم', views_today: 'مشاهدة صفحة', period_v: 'الزوار', period_p: 'مشاهدات الصفحات', newv: 'زوار جدد', all: 'منذ البداية',
       last: 'آخر %d يوم', day: 'اليوم', visitors: 'الزوار', views: 'المشاهدات', none: 'لا توجد بيانات بعد. ستظهر الزيارات هنا عندما يفتح الناس الموقع.',
       edit: 'تعديل', del: 'حذف', hide: 'إخفاء', show: 'إظهار', on: 'ظاهر', off: 'مخفي', until: 'حتى', confirm_del: 'حذف نهائي؟', need_text: 'اكتب الخبر بالعربية أو الإنجليزية.',
@@ -97,7 +97,7 @@
     sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: location.origin + '/admin/', shouldCreateUser: true } }).then(function (r) {
       btn.disabled = false;
       if (r.error) { msg.className = 'form-msg err'; msg.textContent = m('err') + r.error.message; return; }
-      msg.className = 'form-msg ok'; msg.textContent = m('link_sent'); $('#codeBox').hidden = false;
+      msg.className = 'form-msg ok'; msg.textContent = m('link_sent2');
     });
   });
   EN_T.code_lbl = 'Or type the 6-digit code from the email'; EN_T.code_btn = 'Sign in with code';
