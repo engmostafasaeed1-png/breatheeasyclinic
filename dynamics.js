@@ -15,7 +15,7 @@
     h1.innerHTML = words.map(function (w, i) {
       return '<span class="w" aria-hidden="true"><span style="animation-delay:' + (0.15 + i * 0.09).toFixed(2) + 's">' + w + '</span></span>';
     }).join(' ');
-    h1.classList.add('split');
+    h1.classList.add('h1-split');
   }
 
   /* 2. Airflow particles behind the hero */

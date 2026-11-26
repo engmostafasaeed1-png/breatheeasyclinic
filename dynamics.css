@@ -3,9 +3,9 @@
 .airflow{position:absolute;inset:0;z-index:-1;pointer-events:none}
 
 /* headline words rise */
-.hero h1.split .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em}
-.hero h1.split .w>span{display:inline-block;transform:translateY(105%);animation:wordUp .9s cubic-bezier(.2,.7,.2,1) forwards}
-.has-intro .hero h1.split .w>span{animation-play-state:paused}
+.hero h1.h1-split .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em}
+.hero h1.h1-split .w>span{display:inline-block;transform:translateY(105%);animation:wordUp .9s cubic-bezier(.2,.7,.2,1) forwards}
+.has-intro .hero h1.h1-split .w>span{animation-play-state:paused}
 @keyframes wordUp{to{transform:none}}
 
 /* parallax */
