@@ -249,3 +249,20 @@
 .fc-brand .fc-lang{border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 14px}
 @media (max-width:980px){.foot-cols{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.foot-cols{grid-template-columns:1fr}}
+
+/* social links */
+.follow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:18px 0 26px}
+.follow-lbl{font-size:.9rem;color:var(--muted);margin-inline-end:4px}
+.soc{display:inline-flex;align-items:center;gap:8px;padding:9px 16px 9px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--navy);text-decoration:none;font-weight:500;font-size:.92rem;box-shadow:0 8px 20px -14px rgba(12,42,77,.4);transition:transform .25s,box-shadow .25s,border-color .25s}
+[dir=rtl] .soc{padding:9px 10px 9px 16px}
+.soc .ic{width:30px;height:30px;padding:6px;border-radius:50%;color:#fff}
+.soc-facebook .ic{background:#1877f2}
+.soc-instagram .ic{background:radial-gradient(circle at 30% 110%,#fdc468 0%,#f77737 25%,#e1306c 55%,#833ab4 85%)}
+.soc:hover{transform:translateY(-2px);box-shadow:0 14px 26px -14px rgba(12,42,77,.5);border-color:transparent}
+.foot-soc{display:flex;gap:10px;margin:6px 0 4px}
+.fsoc{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);color:#fff;transition:background .25s,border-color .25s,transform .25s}
+.fsoc span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.fsoc .ic{width:19px;height:19px}
+.fsoc-facebook:hover{background:#1877f2;border-color:#1877f2;transform:translateY(-2px)}
+.fsoc-instagram:hover{background:#e1306c;border-color:#e1306c;transform:translateY(-2px)}
+.fc .fsoc{display:grid;padding:0}
