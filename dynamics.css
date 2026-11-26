@@ -216,3 +216,22 @@
   .jr-svg{max-height:30vh}
 }
 @media (prefers-reduced-motion:reduce){.jr-card{opacity:1;transform:none}.jr-step,.jr-step:first-child,.jr-step:last-child{min-height:auto;padding:10px 0}}
+
+/* ===== Journey v3: Higgsfield media ===== */
+.jr-stage{isolation:isolate}
+.jr-glow{position:absolute;inset:2% 0 14%;z-index:-1;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 60% 58% at 50% 48%,#000 45%,transparent 78%);mask-image:radial-gradient(ellipse 60% 58% at 50% 48%,#000 45%,transparent 78%)}
+.jr-glow video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:saturate(1.1)}
+.jr-glow video.on{opacity:1}
+.jr-glow{background:url(assets/jr-bg.webp) center/cover no-repeat;opacity:.5;transition:opacity 1s}
+.journey[data-stage="4"] .jr-glow{opacity:.85}
+.jr-card{display:grid;grid-template-columns:112px 1fr;gap:22px;align-items:start}
+.jr-img{width:112px;height:140px;object-fit:cover;border-radius:16px;border:1px solid rgba(255,255,255,.12);box-shadow:0 14px 30px -14px rgba(0,0,0,.7);filter:saturate(.6) brightness(.8);transform:scale(.96);transition:filter .6s,transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s}
+.jr-step.on .jr-img{filter:none;transform:none;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),0 0 26px -6px rgba(127,214,230,.55)}
+.jr-txt{min-width:0}
+.jr-txt .jr-num{display:inline-block}
+.jr-txt h3{margin-top:.5em}
+@media (max-width:860px){
+  .jr-card{grid-template-columns:1fr;gap:12px}
+  .jr-img{width:100%;height:92px;border-radius:14px;object-position:50% 40%}
+  .jr-glow{inset:0 8%}
+}
