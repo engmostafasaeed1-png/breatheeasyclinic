@@ -203,3 +203,13 @@
 .nl-hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (max-width:860px){.nl-grid{grid-template-columns:1fr;gap:20px}.nl-row .btn{width:100%;justify-content:center}}
+
+/* subscribe button */
+.sub-btn{border-color:var(--green);color:var(--green-d)}
+.sub-btn .ic{width:18px;height:18px;transform-origin:50% 10%;animation:ring-bell 4s ease-in-out 3s infinite}
+.sub-btn:hover{background:var(--green);border-color:var(--green);color:#fff}
+@keyframes ring-bell{0%,88%,100%{transform:rotate(0)}90%{transform:rotate(14deg)}93%{transform:rotate(-12deg)}96%{transform:rotate(8deg)}}
+.main-nav .nav-sub{display:none}
+@media (max-width:1180px){.main-nav .nav-sub{display:block;color:var(--green-d);font-weight:500}}
+@media (max-width:860px){.sub-btn{display:none}}
+@media (prefers-reduced-motion:reduce){.sub-btn .ic{animation:none}}
