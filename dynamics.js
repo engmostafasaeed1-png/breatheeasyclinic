@@ -109,4 +109,56 @@
       setTimeout(function () { if (timer) stop(); }, 60000);
     });
   }
+  /* ===== Dynamics v2 ===== */
+  /* 6. Breathing back-to-top button with a scroll-progress ring */
+  var top = document.createElement('button'); top.className = 'to-top'; top.type = 'button';
+  top.setAttribute('aria-label', AR ? 'العودة إلى الأعلى' : 'Back to top');
+  top.innerHTML = '<svg viewBox="0 0 44 44" aria-hidden="true"><circle class="tt-track" cx="22" cy="22" r="19"/><circle class="tt-ring" cx="22" cy="22" r="19"/><path d="M22 29V15m-6 6 6-6 6 6"/></svg>';
+  document.body.appendChild(top);
+  var ring = top.querySelector('.tt-ring'), CIRC = 2 * Math.PI * 19; ring.style.strokeDasharray = CIRC.toFixed(1);
+  var sTick = false;
+  function prog() {
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight, p = max > 0 ? h.scrollTop / max : 0;
+    ring.style.strokeDashoffset = (CIRC * (1 - p)).toFixed(1);
+    top.classList.toggle('show', h.scrollTop > 700);
+    sTick = false;
+  }
+  window.addEventListener('scroll', function () { if (!sTick) { sTick = true; requestAnimationFrame(prog); } }, { passive: true });
+  top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+  prog();
+
+  /* 7. Air ripples leaving the hero lungs */
+  var hv = document.querySelector('.hero-visual');
+  if (hv && !reduce) {
+    for (var k = 0; k < 3; k++) { var rp = document.createElement('span'); rp.className = 'air-ripple'; rp.style.animationDelay = (k * 2.4) + 's'; rp.setAttribute('aria-hidden', 'true'); hv.insertBefore(rp, hv.firstChild); }
+  }
+
+  /* 8. 3D tilt + glare on cards, doctors, gallery and hours (mouse only) */
+  if (finePointer && !reduce) {
+    document.querySelectorAll('.card, .doc, .g-item, .day').forEach(function (c) {
+      c.classList.add('tilt');
+      var lift = c.classList.contains('card') ? -6 : -3, amp = c.classList.contains('doc') ? 2.5 : 6;
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        c.style.transform = 'perspective(900px) translateY(' + lift + 'px) rotateX(' + (-y * amp).toFixed(2) + 'deg) rotateY(' + (x * amp).toFixed(2) + 'deg)';
+        c.style.setProperty('--gx', ((x + 0.5) * 100).toFixed(1) + '%'); c.style.setProperty('--gy', ((y + 0.5) * 100).toFixed(1) + '%');
+      });
+      c.addEventListener('pointerleave', function () { c.style.transform = ''; });
+    });
+  }
+
+  /* 9. Section titles: a green underline swipes in when they appear */
+  var heads = document.querySelectorAll('.sec-head h2, .faq-title, .about-grid h2, .nl-grid h2, .plan-grid h2, .contact-grid h2');
+  Array.prototype.forEach.call(heads, function (h) { h.classList.add('swipe'); });
+  if ('IntersectionObserver' in window && !reduce) {
+    var sio = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('drawn'); sio.unobserve(e.target); } }); }, { threshold: 0.6 });
+    Array.prototype.forEach.call(heads, function (h) { sio.observe(h); });
+  } else Array.prototype.forEach.call(heads, function (h) { h.classList.add('drawn'); });
+
+  /* 10. Hours days and FAQ answers arrive one after another */
+  document.querySelectorAll('.week .day').forEach(function (el, i) { el.style.setProperty('--d', (200 + i * 90) + 'ms'); el.classList.add('stagger'); });
+  document.querySelectorAll('.faq-group').forEach(function (g) {
+    Array.prototype.forEach.call(g.querySelectorAll('.qa'), function (el, i) { el.style.setProperty('--d', (200 + i * 110) + 'ms'); el.classList.add('stagger'); });
+  });
+
 })();
