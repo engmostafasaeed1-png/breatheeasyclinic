@@ -12,6 +12,7 @@
   var esc = function (t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var get = function (q) { return fetch(API + q, { headers: H }).then(function (r) { if (!r.ok) throw r; return r.json(); }); };
   var digits = function (s) { return String(s || '').replace(/[^\d]/g, ''); };
+  var fmtP = function (n) { n = digits(n); return /^0\d{10}$/.test(n) ? '+20 ' + n.slice(1, 4) + ' ' + n.slice(4, 7) + ' ' + n.slice(7) : n; };
 
   /* ---------- 1. Settings: phones, email, WhatsApp, social, address ---------- */
   function swapText(el, from, to) {
@@ -24,8 +25,8 @@
     (D.phones || []).forEach(function (oldP, i) {
       var nu = digits((v.phones || [])[i]);
       if (!nu || nu === oldP) return;
-      document.querySelectorAll('a[href="tel:+2' + oldP + '"]').forEach(function (a) { a.href = 'tel:+2' + nu; swapText(a, oldP, nu); });
-      document.querySelectorAll('.foot-cols, .contact-info').forEach(function (el) { swapText(el, oldP, nu); });
+      document.querySelectorAll('a[href="tel:+2' + oldP + '"]').forEach(function (a) { a.href = 'tel:+2' + nu; swapText(a, fmtP(oldP), fmtP(nu)); swapText(a, oldP, nu); });
+      document.querySelectorAll('.foot-cols, .contact-info').forEach(function (el) { swapText(el, fmtP(oldP), fmtP(nu)); });
       if (window.CLINIC && window.CLINIC.phones) window.CLINIC.phones[i] = nu;
     });
     if (v.email && v.email !== D.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) {

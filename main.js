@@ -210,7 +210,7 @@
   function summaryText() {
     var x = state.sess, type = TYPES.filter(function (o) { return o.id === state.type; })[0];
     return [S.brand + ' — ' + S.your_plan, S.visit + ': ' + type.t, S.doctor + ': ' + x.s.doc, S.session + ': ' + x.full + ' (' + x.s.time + ')',
-      S.bring + ': ' + (S['bring_' + state.type] || []).join(' / '), S.addr_1 + ' ' + S.addr_2, C.phones.join(' / ')].join('\n');
+      S.bring + ': ' + (S['bring_' + state.type] || []).join(' / '), S.addr_1 + ' ' + S.addr_2, C.phones.map(function (n) { n = String(n).replace(/\D/g, ''); return /^0\d{10}$/.test(n) ? '+20 ' + n.slice(1, 4) + ' ' + n.slice(4, 7) + ' ' + n.slice(7) : n; }).join(' / ')].join('\n');
   }
   function ics() {
     var x = state.sess, d = x.date, ymd = d.getUTCFullYear() + ('0' + (d.getUTCMonth() + 1)).slice(-2) + ('0' + d.getUTCDate()).slice(-2);
