@@ -286,3 +286,7 @@
 @media (max-width:860px){.map-frame .map{min-height:340px}.map-frame .map-bar{padding:14px}.map-frame .map-chip{width:100%}}
 .map-btn{white-space:nowrap}
 @media (max-width:860px){.map-acts{gap:6px}.map-btn{padding:9px 8px;font-size:.8rem;flex:1 1 auto}}
+/* clinic desk banner: video plays over the photo once it is ready */
+.banner-vid{position:relative}
+.banner-vid .bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.banner-vid:has(.bg-video.on) img{visibility:hidden}
