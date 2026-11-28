@@ -168,18 +168,18 @@
   }
 
   /* settings rows: 'site', 'schedule', 'announce' (cached so repeat visits update instantly) */
-  function applyAll(rows) {
+  function applyAll(rows, fresh) {
     if (!rows || typeof rows !== 'object') return;
     try { applySite(rows.site); } catch (e) {}
     try { applySchedule(rows.schedule); } catch (e) {}
-    try { applyAnnounce(rows.announce); } catch (e) {}
+    if (fresh) try { applyAnnounce(rows.announce); } catch (e) {}   /* never from the cache: a switched-off notice must not reappear */
   }
   try { applyAll(JSON.parse(localStorage.getItem('be-settings2') || 'null')); } catch (e) {}
   get('settings?select=key,value').then(function (list) {
     var rows = {};
     (list || []).forEach(function (r) { rows[r.key] = r.value; });
     try { localStorage.setItem('be-settings2', JSON.stringify(rows)); } catch (e) {}
-    applyAll(rows);
+    applyAll(rows, true);
   }).catch(function () {});
 
   /* ---------- 4. News bar ---------- */
