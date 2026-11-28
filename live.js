@@ -196,16 +196,27 @@
     }).join('');
     var bar = document.createElement('div');
     bar.className = 'news-bar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', AR ? 'أخبار العيادة' : 'Clinic news');
-    var single = rows.length === 1;
     bar.innerHTML = '<span class="nb-label"><i aria-hidden="true"></i>' + (AR ? 'جديد' : 'News') + '</span>' +
-      '<div class="nb-viewport"><div class="nb-track' + (single ? ' nb-static' : '') + '">' + items + (single ? '' : '<span aria-hidden="true" class="nb-dup">' + items + '</span>') + '</div></div>' +
+      '<div class="nb-viewport"><div class="nb-track"><span class="nb-group">' + items + '</span></div></div>' +
       '<button class="nb-close" type="button" aria-label="' + (AR ? 'إخفاء الأخبار' : 'Hide news') + '">&times;</button>';
     var header = document.querySelector('.site-header');
     if (!header) return;
     var ann = header.querySelector('.ann-bar');
     header.insertBefore(bar, ann ? ann.nextSibling : header.firstChild);
-    var track = bar.querySelector('.nb-track');
-    if (!single) track.style.animationDuration = Math.max(18, rows.length * 9) + 's';
+    /* always scroll: repeat the news until one group is wider than the bar, then loop two identical groups seamlessly */
+    var track = bar.querySelector('.nb-track'), group = track.firstChild, vp = bar.querySelector('.nb-viewport');
+    function fill() {
+      group.innerHTML = items;
+      var guard = 0;
+      while (group.scrollWidth < vp.clientWidth && guard++ < 20) group.insertAdjacentHTML('beforeend', items);
+      var old = track.querySelector('.nb-dup'); if (old) old.remove();
+      var dup = group.cloneNode(true); dup.className = 'nb-group nb-dup'; dup.setAttribute('aria-hidden', 'true');
+      dup.querySelectorAll('a').forEach(function (a) { a.tabIndex = -1; });
+      track.appendChild(dup);
+      track.style.animationDuration = Math.max(12, group.scrollWidth / 55) + 's';   /* about 55 px per second */
+    }
+    fill();
+    var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(fill, 250); });
     bar.querySelector('.nb-close').addEventListener('click', function () {
       bar.remove(); try { sessionStorage.setItem(NEWS_KEY, sig); } catch (e) {}
     });
