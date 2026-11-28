@@ -106,6 +106,7 @@
       if (!s || (docId && docId !== 'any' && s.id !== docId)) continue;
       if (k === 0 && n.min >= toMin(s.to)) continue;
       var date = new Date(Date.UTC(n.y, n.m - 1, n.d + k));
+      if (C.closed && C.closed.indexOf(date.toISOString().slice(0, 10)) > -1) continue;   /* closure date set in the admin console */
       out.push({ k: k, dow: dow, s: s, date: date,
         live: k === 0 && n.min >= toMin(s.from),
         startsIn: k * 1440 + toMin(s.from) - n.min, endsIn: toMin(s.to) - n.min,
@@ -142,6 +143,7 @@
     st.hidden = false;
   }
   try { updateLive(); setInterval(updateLive, 30000); } catch (e) { /* static fallback */ }
+  window.BE_refreshSchedule = function () { try { updateLive(); } catch (e) {} };   /* live.js calls this after loading hours from the admin console */
 
   /* ---------- 5. Visit planner ---------- */
   var planner = $('#planner');
@@ -365,7 +367,7 @@
       .then(function (r) {
         var ok = r.ok || r.status === 409;   /* 409 = already subscribed: same thank-you message */
         msg.className = 'nl-msg ' + (ok ? 'ok' : 'err'); msg.textContent = ok ? S.nl_ok : S.nl_err;
-        if (ok) f.reset();
+        if (ok) { f.reset(); try { document.dispatchEvent(new CustomEvent('be:subscribed')); } catch (e2) {} }
       })
       .catch(function () { msg.className = 'nl-msg err'; msg.textContent = S.nl_err; })
       .then(function () { f.classList.remove('busy'); btn.textContent = S.nl_btn; });

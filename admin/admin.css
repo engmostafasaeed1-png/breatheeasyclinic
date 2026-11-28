@@ -180,3 +180,28 @@ textarea{resize:vertical}
 .batch{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#f7f9fb}
 .batch b{font-weight:600;margin-inline-end:auto}
 @media (max-width:760px){.row4{grid-template-columns:1fr 1fr}.stable th:nth-child(4),.stable td:nth-child(4){display:none}}
+
+/* ---------- doctors & hours ---------- */
+.week-grid{display:grid;gap:8px;margin-bottom:8px}
+.wrow{display:grid;grid-template-columns:130px 1.3fr 1fr 1fr;gap:10px;align-items:center;padding:8px 12px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.wrow.off{background:#f7f9fb}
+.wrow .dn{font-weight:600;color:var(--navy)}
+.wrow.off input{opacity:.45}
+.wrow input[type=time]{direction:ltr}
+.addclosed{margin:4px 0 6px}
+.closed-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid #f3c9a8;background:#fff8f2;border-radius:12px}
+.closed-item b{color:#8a3d0c;min-width:150px}
+.closed-item span{flex:1;color:var(--muted);font-size:.9rem}
+.closed-item.past{opacity:.5}
+/* ---------- visitor actions ---------- */
+.act-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+.act{display:flex;gap:12px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.act i{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--jade);color:var(--green-d)}
+.act i svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.act b{display:block;font-size:1.35rem;font-weight:600;color:var(--navy);line-height:1.1;font-variant-numeric:tabular-nums}
+.act small{display:block;color:var(--muted);font-size:.78rem}
+/* ---------- account ---------- */
+.acct{display:grid;grid-template-columns:max-content 1fr;gap:8px 18px;margin:0}
+.acct dt{color:var(--muted);font-size:.88rem}
+.acct dd{margin:0;font-weight:500}
+@media (max-width:760px){.wrow{grid-template-columns:1fr 1fr}.wrow .dn{grid-column:1/-1}.closed-item{flex-wrap:wrap}}

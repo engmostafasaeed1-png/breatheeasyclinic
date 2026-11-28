@@ -24,7 +24,19 @@
     contact_h: 'التواصل', phone1: 'الهاتف ١', phone2: 'الهاتف ٢', whatsapp: 'رقم واتساب', social_h: 'التواصل الاجتماعي', addr_h: 'العنوان',
     addr1_en: 'سطر العنوان (إنجليزي)', addr1_ar: 'سطر العنوان (عربي)', addr2_en: 'الوصف والاتجاهات (إنجليزي)', addr2_ar: 'الوصف والاتجاهات (عربي)',
     land_en: 'علامة مميزة (إنجليزي)', land_ar: 'علامة مميزة (عربي)', save_set: 'حفظ الإعدادات',
-    set_note: 'مواعيد العمل والأطباء ونصوص الصفحات جزء من تصميم الموقع، اطلبها من مطوّر الموقع.',
+    set_note: 'أيام ومواعيد الأطباء في تبويب «الأطباء والمواعيد». نبذة الأطباء ونصوص الصفحات جزء من تصميم الموقع، اطلبها من مطوّر الموقع.',
+    tab_hours: 'الأطباء والمواعيد', tab_ann: 'إعلان', tab_account: 'الحساب',
+    act_h: 'ماذا فعل الزوار', act_p: 'الضغطات على أزرار الموقع. قد يضغط الشخص أكثر من مرة؛ الرقم الأصغر يوضح عدد الأشخاص المختلفين.',
+    hours_h: 'الأطباء والمواعيد', hours_p: 'اختر الطبيب في كل يوم ومواعيد الكشف. يتحدّث جدول المواعيد وبطاقات الأطباء وحالة «مفتوح الآن» ومخطِّط الزيارة على الموقع خلال ثوانٍ.',
+    week_h: 'الجدول الأسبوعي', closed_h: 'أيام إغلاق العيادة', closed_p: 'للإجازات الرسمية أو السفر أو المؤتمرات. تظهر هذه الأيام مغلقة على الموقع ولا تُحتسب في «مفتوح الآن» ولا في مخطِّط الزيارة.',
+    add_date: 'إضافة التاريخ', save_hours: 'حفظ المواعيد', hours_reset: 'الرجوع للمواعيد الأصلية',
+    ann_h: 'إعلان', ann_p: 'تنبيه مهم للزوار في نافذة منبثقة أو شريط مميز أعلى الموقع. يرى كل زائر النافذة مرة واحدة، وحفظ نص جديد يُظهرها من جديد.',
+    ann_on: 'إظهار الإعلان على الموقع', ann_style: 'الشكل', ann_popup: 'نافذة منبثقة', ann_banner: 'شريط مميز', ann_start: 'يظهر من تاريخ (اختياري)', ann_end: 'يختفي بعد تاريخ (اختياري)',
+    ann_title_en: 'العنوان (إنجليزي)', ann_title_ar: 'العنوان (عربي)', ann_text_en: 'الرسالة (إنجليزي)', ann_text_ar: 'الرسالة (عربي)',
+    ann_btn_en: 'نص الزر (إنجليزي، اختياري)', ann_btn_ar: 'نص الزر (عربي، اختياري)', ann_link: 'رابط الزر', ann_save: 'حفظ الإعلان', ann_view: 'شاهده على الموقع ↗',
+    acc_h: 'الحساب', acc_p: 'بيانات دخول المسؤول والأمان.', acc_info: 'حسابك', pw_h: 'تغيير كلمة المرور', pw_new: 'كلمة المرور الجديدة', pw_again: 'اكتبها مرة أخرى',
+    pw_note: '١٠ أحرف على الأقل. استخدم كلمة مرور لا تستخدمها في مواقع أخرى.', pw_save: 'تغيير كلمة المرور', sec_h: 'الأجهزة المسجّل دخولها',
+    sec_p: 'إذا سجّلت الدخول على جهاز مشترك أو مفقود، سجّل الخروج من كل الأجهزة. ستحتاج كلمة المرور للدخول مرة أخرى.', sign_all: 'تسجيل الخروج من كل الأجهزة',
     tab_subs: 'المشتركون', subs_h: 'المشتركون', subs_p: 'الأشخاص الذين اشتركوا في النشرة من الموقع. هذه القائمة تظهر لك فقط.',
     mail_h: 'راسل المشتركين', mail_p: 'اكتب الرسالة هنا ثم افتحها في Gmail أو تطبيق البريد. تُرسل إليك ويُضاف المشتركون في خانة BCC فلا يرى أحدهم بريد الآخرين.',
     mail_to: 'إرسال إلى', aud_all: 'كل المشتركين النشطين', aud_en: 'المشتركون بالإنجليزية', aud_ar: 'المشتركون بالعربية', mail_subj: 'الموضوع', mail_body: 'الرسالة',
@@ -41,6 +53,12 @@
       edit: 'Edit', del: 'Delete', hide: 'Hide', show: 'Show', on: 'Visible', off: 'Hidden', until: 'until', confirm_del: 'Delete this permanently?', need_text: 'Write the news in English or Arabic.',
       uploading: 'Uploading…', need_file: 'Choose a photo first.', bad_phone: 'Phone numbers should be 11 digits, e.g. 01xxxxxxxxx.', bad_url: 'Check the link, it must start with https://',
       direct: 'Direct / typed', acc_made: 'Account created. Tell Claude so it can be made an admin, then sign in.', acc_closed: 'New accounts are switched off. Ask the website developer.', weak: 'Use at least 10 characters for the password.', peak: 'Busiest day:', mobile: 'Mobile', tablet: 'Tablet', desktop: 'Desktop', en: 'English', ar: 'Arabic', signed: 'Signed in as ',
+      days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], doc_hedya: 'Dr. Hedya', doc_wael: 'Dr. Wael', closed_opt: 'Closed (no clinic)',
+      t_from: 'From', t_to: 'To', bad_time: 'Check the times on %s: the end must be after the start.', reset_q: 'Go back to the original hours built into the website?', need_date: 'Choose a date first.',
+      date_dup: 'This date is already in the list.', past: 'past', no_closed: 'No closure dates.', ann_need: 'Write a title or a message.', bad_link: 'The button link must start with https://, tel: or #',
+      a_call: 'Call', a_whatsapp: 'WhatsApp', a_directions: 'Directions / map', a_subscribe: 'Subscribed', a_email: 'Email', a_social: 'Facebook / Instagram', a_people: '%d people',
+      a_sum: '%a taps · %t today', acc_email: 'Email', acc_created: 'Account created', acc_last: 'Last sign-in', pw_mismatch: 'The two passwords are different.', pw_short: 'Use at least 10 characters.',
+      pw_done: 'Password changed.', sign_all_q: 'Sign out on all devices, including this one?', actions: 'Actions',
       s_total: 'Active subscribers', s_new: 'New in 30 days', s_en: 'English', s_ar: 'Arabic', s_off: 'unsubscribed', active: 'Active', unsub: 'Unsubscribed',
       do_unsub: 'Unsubscribe', do_resub: 'Re-activate', copied: 'Copied %d email addresses', none_subs: 'No subscribers yet. Sign-ups from the website form will appear here.',
       no_match: 'No subscribers match.', need_subj: 'Write a subject and a message.', no_aud: 'There are no active subscribers in this group.', batch: 'Group %d: %a to %b',
@@ -53,6 +71,12 @@
       edit: 'تعديل', del: 'حذف', hide: 'إخفاء', show: 'إظهار', on: 'ظاهر', off: 'مخفي', until: 'حتى', confirm_del: 'حذف نهائي؟', need_text: 'اكتب الخبر بالعربية أو الإنجليزية.',
       uploading: 'جارٍ الرفع…', need_file: 'اختر صورة أولًا.', bad_phone: 'رقم الهاتف يجب أن يكون ١١ رقمًا مثل 01xxxxxxxxx.', bad_url: 'تأكد من الرابط، يجب أن يبدأ بـ https://',
       direct: 'مباشر / كتابة الرابط', acc_made: 'تم إنشاء الحساب. أخبر Claude ليتم تفعيله كمسؤول، ثم سجّل الدخول.', acc_closed: 'إنشاء حسابات جديدة متوقف. تواصل مع مطوّر الموقع.', weak: 'استخدم ١٠ أحرف على الأقل لكلمة المرور.', peak: 'أكثر يوم زيارة:', mobile: 'موبايل', tablet: 'تابلت', desktop: 'كمبيوتر', en: 'الإنجليزية', ar: 'العربية', signed: 'مسجّل باسم ',
+      days: ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'], doc_hedya: 'د. هدية', doc_wael: 'د. وائل', closed_opt: 'مغلق (لا يوجد كشف)',
+      t_from: 'من', t_to: 'إلى', bad_time: 'راجع مواعيد يوم %s: يجب أن يكون وقت الانتهاء بعد البداية.', reset_q: 'الرجوع للمواعيد الأصلية المكتوبة في الموقع؟', need_date: 'اختر تاريخًا أولًا.',
+      date_dup: 'هذا التاريخ موجود بالفعل.', past: 'مضى', no_closed: 'لا توجد أيام إغلاق.', ann_need: 'اكتب عنوانًا أو رسالة.', bad_link: 'رابط الزر يجب أن يبدأ بـ https:// أو tel: أو #',
+      a_call: 'اتصال', a_whatsapp: 'واتساب', a_directions: 'الاتجاهات / الخريطة', a_subscribe: 'اشتراك', a_email: 'بريد إلكتروني', a_social: 'فيسبوك / إنستجرام', a_people: '%d شخص',
+      a_sum: '%a ضغطة · %t اليوم', acc_email: 'البريد الإلكتروني', acc_created: 'تاريخ إنشاء الحساب', acc_last: 'آخر تسجيل دخول', pw_mismatch: 'كلمتا المرور غير متطابقتين.', pw_short: 'استخدم ١٠ أحرف على الأقل.',
+      pw_done: 'تم تغيير كلمة المرور.', sign_all_q: 'تسجيل الخروج من كل الأجهزة بما فيها هذا الجهاز؟', actions: 'إجراءات',
       s_total: 'المشتركون النشطون', s_new: 'جدد خلال ٣٠ يومًا', s_en: 'الإنجليزية', s_ar: 'العربية', s_off: 'ألغوا الاشتراك', active: 'نشط', unsub: 'ألغى الاشتراك',
       do_unsub: 'إلغاء الاشتراك', do_resub: 'إعادة التفعيل', copied: 'تم نسخ %d عنوان بريد', none_subs: 'لا يوجد مشتركون بعد. ستظهر هنا الاشتراكات من نموذج الموقع.',
       no_match: 'لا يوجد مشتركون مطابقون.', need_subj: 'اكتب الموضوع والرسالة.', no_aud: 'لا يوجد مشتركون نشطون في هذه المجموعة.', batch: 'المجموعة %d: من %a إلى %b',
@@ -69,7 +93,7 @@
     $$('[data-t]').forEach(function (el) { var k = el.getAttribute('data-t'); el.textContent = (l === 'ar' ? AR_T[k] : EN_T[k]) || EN_T[k]; });
     $$('[data-lang-toggle]').forEach(function (b) { b.textContent = l === 'ar' ? 'English' : 'العربية'; });
     if (lastStats) renderStats(lastStats);
-    if (sb && !$('#app').hidden) { loadNews(); loadPhotos(); renderSubs(); }
+    if (sb && !$('#app').hidden) { loadNews(); loadPhotos(); renderSubs(); if (hoursState) renderWeek(); renderClosed(); if (acctUser) renderAccount(); }
   }
   $$('[data-lang-toggle]').forEach(function (b) { b.addEventListener('click', function () { setLang(lang === 'ar' ? 'en' : 'ar'); }); });
 
@@ -92,7 +116,7 @@
       try { localStorage.setItem('be-notrack', '1'); } catch (e) {}
       $('#scrLogin').hidden = true; $('#app').hidden = false;
       ME = user.email || ''; $('#whoami').textContent = m('signed') + ME;
-      loadStats(); loadNews(); loadPhotos(); loadSettings(); loadSubs();
+      loadStats(); loadNews(); loadPhotos(); loadSettings(); loadSubs(); loadHours(); loadAnn(); loadAccount();
     });
   }
   sb.auth.getSession().then(function (r) { var s = r.data && r.data.session; if (s) enter(s.user); else showLogin(); });
@@ -138,6 +162,7 @@
       $$('.panel').forEach(function (p) { p.hidden = p.id !== 'tab-' + b.dataset.tab; });
       if (b.dataset.tab === 'dash') loadStats();
       if (b.dataset.tab === 'subs') loadSubs();
+      if (b.dataset.tab === 'account') loadAccount();
     });
   });
 
@@ -160,6 +185,7 @@
       ['', m('all'), s.all.visitors, nf(s.all.views) + ' ' + m('views_today')]
     ].map(function (k) { return '<div class="kpi ' + k[0] + '"><small>' + esc(k[1]) + '</small><b>' + nf(k[2]) + '</b><span>' + esc(k[3]) + '</span></div>'; }).join('');
     drawChart(s.daily || []);
+    renderActions(s);
     bars('#bPages', s.pages, function (k) { return k === '/' ? (lang === 'ar' ? 'الرئيسية (إنجليزي)' : 'Home (English)') : k === '/ar/' ? (lang === 'ar' ? 'الرئيسية (عربي)' : 'Home (Arabic)') : k; });
     bars('#bRefs', s.refs, function (k) { return k === 'direct' ? m('direct') : k; });
     bars('#bDev', s.devices, function (k) { return m(k); });
@@ -202,11 +228,29 @@
       h.addEventListener('mouseenter', function () {
         var i = +h.dataset.i, d = data[i];
         $$('.bar', box).forEach(function (b) { b.classList.toggle('hov', +b.dataset.b === i); });
-        tip.innerHTML = '<b>' + esc(d.day) + '</b><br>' + esc(m('visitors')) + ': ' + nf(d.visitors) + ' · ' + esc(m('views')) + ': ' + nf(d.views);
+        tip.innerHTML = '<b>' + esc(d.day) + '</b><br>' + esc(m('visitors')) + ': ' + nf(d.visitors) + ' · ' + esc(m('views')) + ': ' + nf(d.views) + (d.actions ? '<br>' + esc(m('actions')) + ': ' + nf(d.actions) : '');
         tip.hidden = false; tip.style.left = (X(i) + cw / 2) / W * 100 + '%'; tip.style.top = y(d.visitors) + 'px';
       });
       h.addEventListener('mouseleave', function () { tip.hidden = true; $$('.bar', box).forEach(function (b) { b.classList.remove('hov'); }); });
     });
+  }
+  var AIC = {
+    call: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>',
+    whatsapp: '<path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 9.5c.3 1.6 1.9 3.6 4 4.5l1.2-1.2 2 .9c-.2 1-1.1 1.8-2.2 1.8-3.3 0-6.5-3.2-6.5-6.5 0-1.1.8-2 1.8-2.2l.9 2z"/>',
+    directions: '<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>',
+    subscribe: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    email: '<path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/>',
+    social: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>'
+  };
+  function renderActions(s) {
+    var a = s.actions || {}, g = function (k) { return a[k] || { n: 0, people: 0 }; };
+    var soc = { n: g('facebook').n + g('instagram').n, people: g('facebook').people + g('instagram').people };
+    var list = [['call', g('call')], ['whatsapp', g('whatsapp')], ['directions', g('directions')], ['subscribe', g('subscribe')], ['email', g('email')], ['social', soc]];
+    var total = list.reduce(function (t, x) { return t + x[1].n; }, 0);
+    $('#actSum').textContent = m('a_sum').replace('%a', nf(total)).replace('%t', nf(s.actions_today || 0)) + ' · ' + m('last').replace('%d', nf(days));
+    $('#actGrid').innerHTML = list.map(function (x) {
+      return '<div class="act"><i><svg viewBox="0 0 24 24">' + AIC[x[0]] + '</svg></i><div><b>' + nf(x[1].n) + '</b><small>' + esc(m('a_' + x[0])) + '</small><small>' + esc(m('a_people').replace('%d', nf(x[1].people))) + '</small></div></div>';
+    }).join('');
   }
   var rT; window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(function () { if (lastStats) drawChart(lastStats.daily || []); }, 200); });
 
@@ -397,6 +441,123 @@
         '<a class="btn sm" target="_blank" rel="noopener" href="' + esc(gm) + '">' + esc(m('gmail')) + '</a><a class="btn sm ghost" href="' + esc(mt) + '">' + esc(m('mailapp')) + '</a></div>';
     }
     out.innerHTML = html;
+  });
+
+  /* ---------- doctors & hours ---------- */
+  var ORDER = [6, 0, 1, 2, 3, 4, 5], hoursState = null, closedState = [];
+  function todayIso() { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Africa/Cairo' }).format(new Date()); }
+  function loadHours() {
+    sb.from('settings').select('value').eq('key', 'schedule').maybeSingle().then(function (r) {
+      if (r.error) return fail(r.error);
+      var v = (r.data && r.data.value) || {};
+      hoursState = JSON.parse(JSON.stringify(v.days || DEF.schedule || {}));
+      closedState = (v.closed || []).slice();
+      renderWeek(); renderClosed();
+    });
+  }
+  function readWeek() {
+    $$('#weekGrid .wrow').forEach(function (row) {
+      var d = row.dataset.d, id = $('select', row).value, ins = $$('input', row);
+      hoursState[d] = id ? { id: id, from: ins[0].value, to: ins[1].value } : null;
+    });
+  }
+  function renderWeek() {
+    if (!hoursState) return;
+    $('#weekGrid').innerHTML = ORDER.map(function (d) {
+      var x = hoursState[String(d)] || null, id = x ? x.id : '';
+      return '<div class="wrow' + (id ? '' : ' off') + '" data-d="' + d + '"><span class="dn">' + esc(m('days')[d]) + '</span>' +
+        '<select aria-label="' + esc(m('days')[d]) + '"><option value=""' + (id ? '' : ' selected') + '>' + esc(m('closed_opt')) + '</option><option value="hedya"' + (id === 'hedya' ? ' selected' : '') + '>' + esc(m('doc_hedya')) + '</option><option value="wael"' + (id === 'wael' ? ' selected' : '') + '>' + esc(m('doc_wael')) + '</option></select>' +
+        '<input type="time" step="900" aria-label="' + esc(m('t_from')) + '" value="' + esc(x ? x.from : '16:00') + '"' + (id ? '' : ' disabled') + '>' +
+        '<input type="time" step="900" aria-label="' + esc(m('t_to')) + '" value="' + esc(x ? x.to : '19:00') + '"' + (id ? '' : ' disabled') + '></div>';
+    }).join('');
+  }
+  $('#weekGrid').addEventListener('change', function (e) {
+    if (e.target.tagName !== 'SELECT') return;
+    var row = e.target.closest('.wrow'), on = !!e.target.value;
+    row.classList.toggle('off', !on); $$('input', row).forEach(function (i) { i.disabled = !on; });
+  });
+  function renderClosed() {
+    var t = todayIso(), fmt = new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+    closedState.sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+    $('#closedList').innerHTML = closedState.length ? closedState.map(function (c, i) {
+      var past = c.date < t;
+      return '<div class="closed-item' + (past ? ' past' : '') + '"><b>' + esc(fmt.format(new Date(c.date + 'T00:00:00Z'))) + (past ? ' · ' + esc(m('past')) : '') + '</b><span>' + esc([c.note_en, c.note_ar].filter(Boolean).join(' · ') || '—') + '</span>' +
+        '<button class="btn sm danger" type="button" data-i="' + i + '">' + esc(m('del')) + '</button></div>';
+    }).join('') : '<p class="empty">' + esc(m('no_closed')) + '</p>';
+  }
+  $('#closedList').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; closedState.splice(+b.dataset.i, 1); renderClosed(); });
+  $('#addClosed').addEventListener('click', function () {
+    var d = $('#cDate').value;
+    if (!d) return toast(m('need_date'), true);
+    if (closedState.some(function (c) { return c.date === d; })) return toast(m('date_dup'), true);
+    closedState.push({ date: d, note_en: $('#cNoteEn').value.trim(), note_ar: $('#cNoteAr').value.trim() });
+    $('#cDate').value = ''; $('#cNoteEn').value = ''; $('#cNoteAr').value = ''; renderClosed();
+  });
+  $('#hoursForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var msg = $('#hoursMsg'); readWeek();
+    for (var k in hoursState) {
+      var x = hoursState[k];
+      if (x && (!/^\d\d:\d\d$/.test(x.from) || !/^\d\d:\d\d$/.test(x.to) || x.from >= x.to)) { msg.className = 'form-msg err'; msg.textContent = m('bad_time').replace('%s', m('days')[+k]); return; }
+    }
+    var days = {}; Object.keys(hoursState).forEach(function (k) { if (hoursState[k]) days[k] = hoursState[k]; });
+    var t = todayIso(), closed = closedState.filter(function (c) { return c.date >= t; });
+    msg.className = 'form-msg'; msg.textContent = '';
+    sb.from('settings').upsert({ key: 'schedule', value: { days: days, closed: closed }, updated_at: new Date().toISOString() }).then(function (r) {
+      if (r.error) return fail(r.error);
+      closedState = closed; renderClosed(); msg.className = 'form-msg ok'; msg.textContent = m('saved') + ' ✓'; toast(m('saved'));
+    });
+  });
+  $('#hoursReset').addEventListener('click', function () {
+    if (!confirm(m('reset_q'))) return;
+    sb.from('settings').delete().eq('key', 'schedule').then(function (r) { if (r.error) return fail(r.error); toast(m('saved')); loadHours(); });
+  });
+
+  /* ---------- announcement ---------- */
+  var ANN = ['style', 'start', 'end', 'title_en', 'title_ar', 'text_en', 'text_ar', 'btn_en', 'btn_ar', 'link'];
+  function loadAnn() {
+    sb.from('settings').select('value').eq('key', 'announce').maybeSingle().then(function (r) {
+      if (r.error) return fail(r.error);
+      var v = (r.data && r.data.value) || {}, f = $('#annForm');
+      f.elements.active.checked = !!v.active;
+      ANN.forEach(function (k) { if (f.elements[k]) f.elements[k].value = v[k] || (k === 'style' ? 'popup' : ''); });
+    });
+  }
+  $('#annForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target, msg = $('#annMsg'), v = { active: f.elements.active.checked, v: Date.now().toString(36) };
+    ANN.forEach(function (k) { v[k] = f.elements[k].value.trim(); });
+    if (v.active && !v.title_en && !v.title_ar && !v.text_en && !v.text_ar) { msg.className = 'form-msg err'; msg.textContent = m('ann_need'); return; }
+    if (v.link && !/^(https:\/\/|tel:|#|\/)/.test(v.link)) { msg.className = 'form-msg err'; msg.textContent = m('bad_link'); return; }
+    msg.className = 'form-msg'; msg.textContent = '';
+    sb.from('settings').upsert({ key: 'announce', value: v, updated_at: new Date().toISOString() }).then(function (r) {
+      if (r.error) return fail(r.error);
+      msg.className = 'form-msg ok'; msg.textContent = m('saved') + ' ✓'; toast(m('saved'));
+    });
+  });
+
+  /* ---------- account ---------- */
+  var acctUser = null;
+  function loadAccount() { sb.auth.getUser().then(function (r) { if (r.data && r.data.user) { acctUser = r.data.user; renderAccount(); } }); }
+  function renderAccount() {
+    var f = function (t) { return t ? new Date(t).toLocaleString(lang === 'ar' ? 'ar-EG' : 'en-GB', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Africa/Cairo' }) : '—'; };
+    $('#acctInfo').innerHTML = '<dt>' + esc(m('acc_email')) + '</dt><dd dir="ltr">' + esc(acctUser.email) + '</dd><dt>' + esc(m('acc_created')) + '</dt><dd>' + esc(f(acctUser.created_at)) + '</dd><dt>' + esc(m('acc_last')) + '</dt><dd>' + esc(f(acctUser.last_sign_in_at)) + '</dd>';
+  }
+  $('#pwForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target, msg = $('#pwMsg'), a = f.pw1.value, b = f.pw2.value, btn = $('button[type=submit]', f);
+    if (a.length < 10) { msg.className = 'form-msg err'; msg.textContent = m('pw_short'); return; }
+    if (a !== b) { msg.className = 'form-msg err'; msg.textContent = m('pw_mismatch'); return; }
+    btn.disabled = true; msg.className = 'form-msg'; msg.textContent = '';
+    sb.auth.updateUser({ password: a }).then(function (r) {
+      btn.disabled = false; f.reset();
+      if (r.error) { msg.className = 'form-msg err'; msg.textContent = m('err') + r.error.message; return; }
+      msg.className = 'form-msg ok'; msg.textContent = m('pw_done'); toast(m('pw_done'));
+    });
+  });
+  $('#signAll').addEventListener('click', function () {
+    if (!confirm(m('sign_all_q'))) return;
+    sb.auth.signOut({ scope: 'global' }).then(function () { showLogin(); });
   });
 
   /* ---------- settings ---------- */
