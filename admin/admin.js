@@ -26,7 +26,7 @@
     land_en: 'علامة مميزة (إنجليزي)', land_ar: 'علامة مميزة (عربي)', save_set: 'حفظ الإعدادات',
     set_note: 'مواعيد العمل والأطباء ونصوص الصفحات جزء من تصميم الموقع، اطلبها من مطوّر الموقع.',
     tab_subs: 'المشتركون', subs_h: 'المشتركون', subs_p: 'الأشخاص الذين اشتركوا في النشرة من الموقع. هذه القائمة تظهر لك فقط.',
-    mail_h: 'راسل المشتركين', mail_p: 'اكتب الرسالة هنا ثم افتحها في Gmail أو تطبيق البريد. يُضاف المشتركون في خانة BCC فلا يرى أحدهم بريد الآخرين.',
+    mail_h: 'راسل المشتركين', mail_p: 'اكتب الرسالة هنا ثم افتحها في Gmail أو تطبيق البريد. تُرسل إليك ويُضاف المشتركون في خانة BCC فلا يرى أحدهم بريد الآخرين.',
     mail_to: 'إرسال إلى', aud_all: 'كل المشتركين النشطين', aud_en: 'المشتركون بالإنجليزية', aud_ar: 'المشتركون بالعربية', mail_subj: 'الموضوع', mail_body: 'الرسالة',
     mail_footer: 'إضافة ملاحظة إلغاء الاشتراك في نهاية الرسالة', use_news: 'استخدم آخر خبر', mk_mail: 'تجهيز الرسالة',
     subs_list: 'قائمة المشتركين', copy_emails: 'نسخ العناوين', dl_csv: 'تنزيل CSV', search: 'بحث', show_lbl: 'عرض', f_active: 'النشطون', f_all: 'الكل', f_off: 'ألغوا الاشتراك',
@@ -79,7 +79,7 @@
   var nf = function (n) { return Number(n || 0).toLocaleString(lang === 'ar' ? 'ar-EG' : 'en-GB'); };
 
   /* ---------- start ---------- */
-  var sb = null, lastStats = null;
+  var sb = null, lastStats = null, ME = '';
   setLang(lang);
   if (!cfg.url || !cfg.key || !window.supabase) { $('#scrSetup').hidden = false; return; }
   sb = window.supabase.createClient(cfg.url, cfg.key, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: 'implicit' } });
@@ -91,7 +91,7 @@
       if (r.error || r.data !== true) { var em = user.email || ''; sb.auth.signOut(); showLogin(m('not_admin') + ' (' + em + ')'); return; }
       try { localStorage.setItem('be-notrack', '1'); } catch (e) {}
       $('#scrLogin').hidden = true; $('#app').hidden = false;
-      $('#whoami').textContent = m('signed') + (user.email || '');
+      ME = user.email || ''; $('#whoami').textContent = m('signed') + ME;
       loadStats(); loadNews(); loadPhotos(); loadSettings(); loadSubs();
     });
   }
@@ -388,7 +388,7 @@
     if (!list.length) { $('#mailMsg').className = 'form-msg err'; $('#mailMsg').textContent = m('no_aud'); return; }
     $('#mailMsg').className = 'form-msg'; $('#mailMsg').textContent = m('batch_note');
     if (f.footer.checked) body += '\n\n—\n' + (aud === 'en' ? M.en.foot_en : aud === 'ar' ? M.ar.foot_ar : M.ar.foot_ar + '\n' + M.en.foot_en);
-    var to = DEF.email || '', SIZE = 40, html = '', enc = encodeURIComponent;
+    var to = ME, SIZE = 40, html = '', enc = encodeURIComponent;
     for (var i = 0; i < list.length; i += SIZE) {
       var bcc = list.slice(i, i + SIZE).join(',');
       var gm = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + enc(to) + '&bcc=' + enc(bcc) + '&su=' + enc(subj) + '&body=' + enc(body);
