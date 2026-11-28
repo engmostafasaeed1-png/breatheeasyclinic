@@ -333,12 +333,18 @@
   var saveData = navigator.connection && navigator.connection.saveData;
   document.querySelectorAll('.bg-video').forEach(function (v) {
     if (reduce || saveData || !('IntersectionObserver' in window)) return;
-    var loaded = false;
+    var loaded = false, broken = false;
+    // if the browser can't decode a video, keep showing the photo instead of a frozen frame
+    function fail() { broken = true; v.pause(); v.classList.remove('on'); }
+    v.addEventListener('error', fail);
+    var srcs = v.querySelectorAll('source');
+    if (srcs.length) srcs[srcs.length - 1].addEventListener('error', fail);
     new IntersectionObserver(function (en) {
       en.forEach(function (e) {
         if (e.isIntersecting) {
+          if (broken) return;
           if (!loaded) { loaded = true; v.preload = 'auto'; v.load(); }
-          v.play().then(function () { v.classList.add('on'); }).catch(function () {});
+          v.play().then(function () { if (!v.error) v.classList.add('on'); }).catch(function () {});
         } else v.pause();
       });
     }, { rootMargin: '200px 0px' }).observe(v);
