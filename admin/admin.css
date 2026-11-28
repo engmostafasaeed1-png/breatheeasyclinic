@@ -159,3 +159,24 @@ textarea{resize:vertical}
 
 .code-box{display:flex;flex-direction:column;gap:10px;text-align:start}
 .code-box input{font-size:1.3rem;letter-spacing:.3em;text-align:center}
+
+/* ---------- subscribers ---------- */
+.card-h .acts{display:flex;gap:6px;flex-wrap:wrap}
+.subbar{margin:6px 0 10px}
+.stable-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px}
+.stable{width:100%;border-collapse:collapse;font-size:.9rem}
+.stable th{text-align:start;font-weight:500;color:var(--muted);font-size:.8rem;padding:10px 12px;background:#f7f9fb;border-bottom:1px solid var(--line);white-space:nowrap}
+.stable td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+.stable tr:last-child td{border-bottom:0}
+.stable tr.off td{color:var(--muted)}
+.stable td.em{direction:ltr;text-align:start;font-weight:500}
+.stable td.em a{color:var(--navy);text-decoration:none}
+.stable td.act{white-space:nowrap;text-align:end}
+.stable td.act .btn{margin-inline-start:4px}
+.addsub{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.addsub h3{font-size:.95rem;margin:0 0 8px}
+.row4{display:grid;grid-template-columns:2fr 1.4fr 1fr auto;gap:8px;align-items:center}
+.batches{display:grid;gap:8px;margin-top:12px}
+.batch{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#f7f9fb}
+.batch b{font-weight:600;margin-inline-end:auto}
+@media (max-width:760px){.row4{grid-template-columns:1fr 1fr}.stable th:nth-child(4),.stable td:nth-child(4){display:none}}

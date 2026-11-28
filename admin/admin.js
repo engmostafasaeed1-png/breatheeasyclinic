@@ -24,7 +24,13 @@
     contact_h: 'التواصل', phone1: 'الهاتف ١', phone2: 'الهاتف ٢', whatsapp: 'رقم واتساب', social_h: 'التواصل الاجتماعي', addr_h: 'العنوان',
     addr1_en: 'سطر العنوان (إنجليزي)', addr1_ar: 'سطر العنوان (عربي)', addr2_en: 'الوصف والاتجاهات (إنجليزي)', addr2_ar: 'الوصف والاتجاهات (عربي)',
     land_en: 'علامة مميزة (إنجليزي)', land_ar: 'علامة مميزة (عربي)', save_set: 'حفظ الإعدادات',
-    set_note: 'مواعيد العمل والأطباء ونصوص الصفحات جزء من تصميم الموقع، اطلبها من مطوّر الموقع.'
+    set_note: 'مواعيد العمل والأطباء ونصوص الصفحات جزء من تصميم الموقع، اطلبها من مطوّر الموقع.',
+    tab_subs: 'المشتركون', subs_h: 'المشتركون', subs_p: 'الأشخاص الذين اشتركوا في النشرة من الموقع. هذه القائمة تظهر لك فقط.',
+    mail_h: 'راسل المشتركين', mail_p: 'اكتب الرسالة هنا ثم افتحها في Gmail أو تطبيق البريد. يُضاف المشتركون في خانة BCC فلا يرى أحدهم بريد الآخرين.',
+    mail_to: 'إرسال إلى', aud_all: 'كل المشتركين النشطين', aud_en: 'المشتركون بالإنجليزية', aud_ar: 'المشتركون بالعربية', mail_subj: 'الموضوع', mail_body: 'الرسالة',
+    mail_footer: 'إضافة ملاحظة إلغاء الاشتراك في نهاية الرسالة', use_news: 'استخدم آخر خبر', mk_mail: 'تجهيز الرسالة',
+    subs_list: 'قائمة المشتركين', copy_emails: 'نسخ العناوين', dl_csv: 'تنزيل CSV', search: 'بحث', show_lbl: 'عرض', f_active: 'النشطون', f_all: 'الكل', f_off: 'ألغوا الاشتراك',
+    name: 'الاسم', language: 'اللغة', joined: 'تاريخ الاشتراك', status: 'الحالة', add_sub: 'إضافة مشترك يدويًا', add: 'إضافة', add_note: 'أضف فقط من وافق على استلام أخبار العيادة.'
   };
   var EN_T = {};
   $$('[data-t]').forEach(function (el) { EN_T[el.getAttribute('data-t')] = el.textContent; });
@@ -34,13 +40,25 @@
       last: 'last %d days', day: 'Day', visitors: 'Visitors', views: 'Views', none: 'No data yet. Visits will appear here as people open the website.',
       edit: 'Edit', del: 'Delete', hide: 'Hide', show: 'Show', on: 'Visible', off: 'Hidden', until: 'until', confirm_del: 'Delete this permanently?', need_text: 'Write the news in English or Arabic.',
       uploading: 'Uploading…', need_file: 'Choose a photo first.', bad_phone: 'Phone numbers should be 11 digits, e.g. 01xxxxxxxxx.', bad_url: 'Check the link, it must start with https://',
-      direct: 'Direct / typed', acc_made: 'Account created. Tell Claude so it can be made an admin, then sign in.', acc_closed: 'New accounts are switched off. Ask the website developer.', weak: 'Use at least 10 characters for the password.', peak: 'Busiest day:', mobile: 'Mobile', tablet: 'Tablet', desktop: 'Desktop', en: 'English', ar: 'Arabic', signed: 'Signed in as ' },
+      direct: 'Direct / typed', acc_made: 'Account created. Tell Claude so it can be made an admin, then sign in.', acc_closed: 'New accounts are switched off. Ask the website developer.', weak: 'Use at least 10 characters for the password.', peak: 'Busiest day:', mobile: 'Mobile', tablet: 'Tablet', desktop: 'Desktop', en: 'English', ar: 'Arabic', signed: 'Signed in as ',
+      s_total: 'Active subscribers', s_new: 'New in 30 days', s_en: 'English', s_ar: 'Arabic', s_off: 'unsubscribed', active: 'Active', unsub: 'Unsubscribed',
+      do_unsub: 'Unsubscribe', do_resub: 'Re-activate', copied: 'Copied %d email addresses', none_subs: 'No subscribers yet. Sign-ups from the website form will appear here.',
+      no_match: 'No subscribers match.', need_subj: 'Write a subject and a message.', no_aud: 'There are no active subscribers in this group.', batch: 'Group %d: %a to %b',
+      gmail: 'Open in Gmail', mailapp: 'Open in email app', batch_note: 'Open each group, check the message, then press Send.', dup: 'This email is already on the list.', bad_email: 'Check the email address.',
+      foot_en: 'You are receiving this email because you subscribed to Breathe Easy Clinic news at breatheeasyclinic.com. To stop these emails, reply with "unsubscribe".',
+      foot_ar: 'تصلك هذه الرسالة لأنك اشتركت في أخبار عيادة تنفّس بسهولة على breatheeasyclinic.com. لإيقاف هذه الرسائل، رُد بكلمة «إلغاء الاشتراك».', no_news: 'There is no news item yet.' },
     ar: { bad_login: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.', not_admin: 'تم تسجيل الدخول، لكن هذا الحساب لم يُفعَّل كمسؤول بعد. اطلب من مطوّر الموقع تفعيله.', need_email: 'اكتب بريدك الإلكتروني أولًا.', link_sent2: 'تم. افتح أحدث رسالة من Supabase (وراجع Spam) واضغط الرابط خلال دقائق.', need_code: 'اكتب الكود المكوّن من ٦ أرقام من البريد.', bad_code: 'الكود غير صحيح أو انتهت صلاحيته. اطلب رسالة جديدة.', sending: 'جارٍ الإرسال…', link_sent: 'تم. افتح بريدك (وراجع Spam): اضغط الرابط أو اكتب الكود بالأسفل.', saved: 'تم الحفظ', deleted: 'تم الحذف', err: 'حدث خطأ: ',
       live: 'متصل الآن', today: 'زوار اليوم', views_today: 'مشاهدة صفحة', period_v: 'الزوار', period_p: 'مشاهدات الصفحات', newv: 'زوار جدد', all: 'منذ البداية',
       last: 'آخر %d يوم', day: 'اليوم', visitors: 'الزوار', views: 'المشاهدات', none: 'لا توجد بيانات بعد. ستظهر الزيارات هنا عندما يفتح الناس الموقع.',
       edit: 'تعديل', del: 'حذف', hide: 'إخفاء', show: 'إظهار', on: 'ظاهر', off: 'مخفي', until: 'حتى', confirm_del: 'حذف نهائي؟', need_text: 'اكتب الخبر بالعربية أو الإنجليزية.',
       uploading: 'جارٍ الرفع…', need_file: 'اختر صورة أولًا.', bad_phone: 'رقم الهاتف يجب أن يكون ١١ رقمًا مثل 01xxxxxxxxx.', bad_url: 'تأكد من الرابط، يجب أن يبدأ بـ https://',
-      direct: 'مباشر / كتابة الرابط', acc_made: 'تم إنشاء الحساب. أخبر Claude ليتم تفعيله كمسؤول، ثم سجّل الدخول.', acc_closed: 'إنشاء حسابات جديدة متوقف. تواصل مع مطوّر الموقع.', weak: 'استخدم ١٠ أحرف على الأقل لكلمة المرور.', peak: 'أكثر يوم زيارة:', mobile: 'موبايل', tablet: 'تابلت', desktop: 'كمبيوتر', en: 'الإنجليزية', ar: 'العربية', signed: 'مسجّل باسم ' }
+      direct: 'مباشر / كتابة الرابط', acc_made: 'تم إنشاء الحساب. أخبر Claude ليتم تفعيله كمسؤول، ثم سجّل الدخول.', acc_closed: 'إنشاء حسابات جديدة متوقف. تواصل مع مطوّر الموقع.', weak: 'استخدم ١٠ أحرف على الأقل لكلمة المرور.', peak: 'أكثر يوم زيارة:', mobile: 'موبايل', tablet: 'تابلت', desktop: 'كمبيوتر', en: 'الإنجليزية', ar: 'العربية', signed: 'مسجّل باسم ',
+      s_total: 'المشتركون النشطون', s_new: 'جدد خلال ٣٠ يومًا', s_en: 'الإنجليزية', s_ar: 'العربية', s_off: 'ألغوا الاشتراك', active: 'نشط', unsub: 'ألغى الاشتراك',
+      do_unsub: 'إلغاء الاشتراك', do_resub: 'إعادة التفعيل', copied: 'تم نسخ %d عنوان بريد', none_subs: 'لا يوجد مشتركون بعد. ستظهر هنا الاشتراكات من نموذج الموقع.',
+      no_match: 'لا يوجد مشتركون مطابقون.', need_subj: 'اكتب الموضوع والرسالة.', no_aud: 'لا يوجد مشتركون نشطون في هذه المجموعة.', batch: 'المجموعة %d: من %a إلى %b',
+      gmail: 'فتح في Gmail', mailapp: 'فتح في تطبيق البريد', batch_note: 'افتح كل مجموعة وراجع الرسالة ثم اضغط إرسال.', dup: 'هذا البريد موجود بالفعل في القائمة.', bad_email: 'تأكد من عنوان البريد.',
+      foot_en: 'You are receiving this email because you subscribed to Breathe Easy Clinic news at breatheeasyclinic.com. To stop these emails, reply with "unsubscribe".',
+      foot_ar: 'تصلك هذه الرسالة لأنك اشتركت في أخبار عيادة تنفّس بسهولة على breatheeasyclinic.com. لإيقاف هذه الرسائل، رُد بكلمة «إلغاء الاشتراك».', no_news: 'لا يوجد خبر بعد.' }
   };
   var lang = 'en';
   try { lang = localStorage.getItem('be-admin-lang') || ((navigator.language || '').slice(0, 2) === 'ar' ? 'ar' : 'en'); } catch (e) {}
@@ -51,7 +69,7 @@
     $$('[data-t]').forEach(function (el) { var k = el.getAttribute('data-t'); el.textContent = (l === 'ar' ? AR_T[k] : EN_T[k]) || EN_T[k]; });
     $$('[data-lang-toggle]').forEach(function (b) { b.textContent = l === 'ar' ? 'English' : 'العربية'; });
     if (lastStats) renderStats(lastStats);
-    if (sb && !$('#app').hidden) { loadNews(); loadPhotos(); }
+    if (sb && !$('#app').hidden) { loadNews(); loadPhotos(); renderSubs(); }
   }
   $$('[data-lang-toggle]').forEach(function (b) { b.addEventListener('click', function () { setLang(lang === 'ar' ? 'en' : 'ar'); }); });
 
@@ -74,7 +92,7 @@
       try { localStorage.setItem('be-notrack', '1'); } catch (e) {}
       $('#scrLogin').hidden = true; $('#app').hidden = false;
       $('#whoami').textContent = m('signed') + (user.email || '');
-      loadStats(); loadNews(); loadPhotos(); loadSettings();
+      loadStats(); loadNews(); loadPhotos(); loadSettings(); loadSubs();
     });
   }
   sb.auth.getSession().then(function (r) { var s = r.data && r.data.session; if (s) enter(s.user); else showLogin(); });
@@ -119,6 +137,7 @@
       $$('.tabs button').forEach(function (x) { x.classList.toggle('on', x === b); x.setAttribute('aria-selected', x === b); });
       $$('.panel').forEach(function (p) { p.hidden = p.id !== 'tab-' + b.dataset.tab; });
       if (b.dataset.tab === 'dash') loadStats();
+      if (b.dataset.tab === 'subs') loadSubs();
     });
   });
 
@@ -209,7 +228,7 @@
     var b = e.target.closest('button'); if (!b) return;
     var id = +b.dataset.id, n = newsRows.filter(function (x) { return x.id === id; })[0]; if (!n) return;
     if (b.dataset.act === 'edit') {
-      var f = $('#newsForm'); f.id.value = n.id; f.text_en.value = n.text_en; f.text_ar.value = n.text_ar; f.link.value = n.link || '';
+      var f = $('#newsForm'); f.elements.id.value = n.id; f.text_en.value = n.text_en; f.text_ar.value = n.text_ar; f.link.value = n.link || '';
       f.ends_at.value = n.ends_at ? n.ends_at.slice(0, 10) : ''; f.sort.value = n.sort; f.active.checked = n.active; f.text_en.focus();
     } else if (b.dataset.act === 'toggle') {
       sb.from('news').update({ active: !n.active }).eq('id', id).then(function (r) { if (r.error) return fail(r.error); toast(m('saved')); loadNews(); });
@@ -217,7 +236,7 @@
       sb.from('news').delete().eq('id', id).then(function (r) { if (r.error) return fail(r.error); toast(m('deleted')); loadNews(); });
     }
   });
-  function resetNews() { var f = $('#newsForm'); f.reset(); f.id.value = ''; f.active.checked = true; $('#newsMsg').textContent = ''; }
+  function resetNews() { var f = $('#newsForm'); f.reset(); f.elements.id.value = ''; f.active.checked = true; $('#newsMsg').textContent = ''; }
   $('#newsReset').addEventListener('click', resetNews);
   $('#newsForm').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -226,7 +245,7 @@
       ends_at: f.ends_at.value ? new Date(f.ends_at.value + 'T23:59:59+02:00').toISOString() : null };
     if (!row.text_en && !row.text_ar) { msg.className = 'form-msg err'; msg.textContent = m('need_text'); return; }
     if (row.link && !/^(https:\/\/|#|\/)/.test(row.link)) { msg.className = 'form-msg err'; msg.textContent = m('bad_url'); return; }
-    var q = f.id.value ? sb.from('news').update(row).eq('id', +f.id.value) : sb.from('news').insert(row);
+    var q = f.elements.id.value ? sb.from('news').update(row).eq('id', +f.elements.id.value) : sb.from('news').insert(row);
     q.then(function (r) { if (r.error) return fail(r.error); toast(m('saved')); resetNews(); loadNews(); });
   });
 
@@ -287,6 +306,97 @@
       sb.storage.from('gallery').remove([p.path]).then(function () { return sb.from('photos').delete().eq('id', id); })
         .then(function (r) { if (r.error) return fail(r.error); toast(m('deleted')); loadPhotos(); });
     }
+  });
+
+  /* ---------- subscribers ---------- */
+  var subRows = [];
+  function loadSubs() {
+    sb.from('subscribers').select('*').order('created_at', { ascending: false }).then(function (r) {
+      if (r.error) return fail(r.error);
+      subRows = r.data || []; renderSubs();
+    });
+  }
+  function fmtDate(t) { return new Date(t).toLocaleDateString(lang === 'ar' ? 'ar-EG' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); }
+  function visibleSubs() {
+    var q = ($('#subSearch').value || '').trim().toLowerCase(), f = $('#subFilter').value;
+    return subRows.filter(function (x) {
+      if (f === 'active' && !x.active) return false;
+      if (f === 'off' && x.active) return false;
+      return !q || x.email.indexOf(q) > -1 || (x.name || '').toLowerCase().indexOf(q) > -1;
+    });
+  }
+  function renderSubs() {
+    if (!$('#subRows')) return;
+    var act = subRows.filter(function (x) { return x.active; }), since = Date.now() - 30 * 864e5;
+    $('#subKpis').innerHTML = [
+      [m('s_total'), act.length, nf(subRows.length - act.length) + ' ' + m('s_off')],
+      [m('s_new'), act.filter(function (x) { return new Date(x.created_at) > since; }).length, ''],
+      [m('s_en'), act.filter(function (x) { return x.lang === 'en'; }).length, ''],
+      [m('s_ar'), act.filter(function (x) { return x.lang === 'ar'; }).length, '']
+    ].map(function (k) { return '<div class="kpi"><small>' + esc(k[0]) + '</small><b>' + nf(k[1]) + '</b><span>' + esc(k[2]) + '</span></div>'; }).join('');
+    var rows = visibleSubs();
+    $('#subRows').innerHTML = rows.length ? rows.map(function (x) {
+      return '<tr class="' + (x.active ? '' : 'off') + '"><td class="em"><a href="mailto:' + esc(x.email) + '">' + esc(x.email) + '</a></td><td>' + esc(x.name || '—') + '</td><td>' + esc(m(x.lang)) + '</td><td>' + esc(fmtDate(x.created_at)) + '</td>' +
+        '<td><span class="pill' + (x.active ? '' : ' off') + '">' + esc(x.active ? m('active') : m('unsub')) + '</span></td>' +
+        '<td class="act"><button class="btn sm ghost" type="button" data-act="toggle" data-id="' + x.id + '">' + esc(x.active ? m('do_unsub') : m('do_resub')) + '</button><button class="btn sm danger" type="button" data-act="del" data-id="' + x.id + '">' + esc(m('del')) + '</button></td></tr>';
+    }).join('') : '<tr><td colspan="6" class="empty">' + esc(subRows.length ? m('no_match') : m('none_subs')) + '</td></tr>';
+  }
+  $('#subSearch').addEventListener('input', renderSubs);
+  $('#subFilter').addEventListener('change', renderSubs);
+  $('#subRows').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    var id = +b.dataset.id, x = subRows.filter(function (r) { return r.id === id; })[0]; if (!x) return;
+    if (b.dataset.act === 'toggle') sb.from('subscribers').update({ active: !x.active }).eq('id', id).then(function (r) { if (r.error) return fail(r.error); toast(m('saved')); loadSubs(); });
+    else if (b.dataset.act === 'del' && confirm(m('confirm_del') + '\n' + x.email)) sb.from('subscribers').delete().eq('id', id).then(function (r) { if (r.error) return fail(r.error); toast(m('deleted')); loadSubs(); });
+  });
+  $('#subCopy').addEventListener('click', function () {
+    var list = visibleSubs().map(function (x) { return x.email; });
+    var done = function () { toast(m('copied').replace('%d', nf(list.length))); };
+    if (navigator.clipboard) navigator.clipboard.writeText(list.join(', ')).then(done, function () { prompt('', list.join(', ')); });
+    else prompt('', list.join(', '));
+  });
+  $('#subCsv').addEventListener('click', function () {
+    var q = function (v) { return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; };
+    var csv = '﻿' + ['email,name,language,subscribed,status'].concat(visibleSubs().map(function (x) {
+      return [x.email, x.name, x.lang, x.created_at.slice(0, 10), x.active ? 'active' : 'unsubscribed'].map(q).join(',');
+    })).join('\r\n');
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'breathe-easy-subscribers-' + new Date().toISOString().slice(0, 10) + '.csv'; document.body.appendChild(a); a.click(); a.remove();
+  });
+  $('#addSub').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target, em = f.email.value.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) return toast(m('bad_email'), true);
+    sb.from('subscribers').insert({ email: em, name: f.elements.name.value.trim(), lang: f.elements.lang.value, source: 'admin' }).then(function (r) {
+      if (r.error) return r.error.code === '23505' ? toast(m('dup'), true) : fail(r.error);
+      f.reset(); toast(m('saved')); loadSubs();
+    });
+  });
+  /* compose: subscribers go in BCC, split into groups so the link stays short enough for Gmail and mail apps */
+  $('#useNews').addEventListener('click', function () {
+    var n = newsRows.filter(function (x) { return x.active; })[0] || newsRows[0], f = $('#mailForm');
+    if (!n) return toast(m('no_news'), true);
+    var aud = f.aud.value, txt = aud === 'ar' ? (n.text_ar || n.text_en) : aud === 'en' ? (n.text_en || n.text_ar) : [n.text_ar, n.text_en].filter(Boolean).join('\n\n');
+    if (!f.subject.value) f.subject.value = aud === 'en' ? 'News from Breathe Easy Clinic' : aud === 'ar' ? 'أخبار عيادة تنفّس بسهولة' : 'أخبار عيادة تنفّس بسهولة | Breathe Easy Clinic news';
+    f.body.value = txt + (n.link ? '\n\n' + (/^https?:/.test(n.link) ? n.link : 'https://breatheeasyclinic.com/' + n.link.replace(/^\//, '')) : '') + '\n\nhttps://breatheeasyclinic.com';
+  });
+  $('#mkMail').addEventListener('click', function () {
+    var f = $('#mailForm'), out = $('#mailBatches'), aud = f.aud.value, subj = f.subject.value.trim(), body = f.body.value.trim();
+    out.innerHTML = '';
+    if (!subj || !body) { $('#mailMsg').className = 'form-msg err'; $('#mailMsg').textContent = m('need_subj'); return; }
+    var list = subRows.filter(function (x) { return x.active && (aud === 'all' || x.lang === aud); }).map(function (x) { return x.email; });
+    if (!list.length) { $('#mailMsg').className = 'form-msg err'; $('#mailMsg').textContent = m('no_aud'); return; }
+    $('#mailMsg').className = 'form-msg'; $('#mailMsg').textContent = m('batch_note');
+    if (f.footer.checked) body += '\n\n—\n' + (aud === 'en' ? M.en.foot_en : aud === 'ar' ? M.ar.foot_ar : M.ar.foot_ar + '\n' + M.en.foot_en);
+    var to = DEF.email || '', SIZE = 40, html = '', enc = encodeURIComponent;
+    for (var i = 0; i < list.length; i += SIZE) {
+      var bcc = list.slice(i, i + SIZE).join(',');
+      var gm = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + enc(to) + '&bcc=' + enc(bcc) + '&su=' + enc(subj) + '&body=' + enc(body);
+      var mt = 'mailto:' + enc(to) + '?bcc=' + enc(bcc) + '&subject=' + enc(subj) + '&body=' + enc(body);
+      html += '<div class="batch"><b>' + esc(m('batch').replace('%d', i / SIZE + 1).replace('%a', nf(i + 1)).replace('%b', nf(Math.min(i + SIZE, list.length)))) + '</b>' +
+        '<a class="btn sm" target="_blank" rel="noopener" href="' + esc(gm) + '">' + esc(m('gmail')) + '</a><a class="btn sm ghost" href="' + esc(mt) + '">' + esc(m('mailapp')) + '</a></div>';
+    }
+    out.innerHTML = html;
   });
 
   /* ---------- settings ---------- */

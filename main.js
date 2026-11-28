@@ -343,7 +343,7 @@
   });
 })();
 
-/* ---------- 10. Newsletter sign-up (sent to the clinic inbox via FormSubmit) ---------- */
+/* ---------- 10. Newsletter sign-up (saved in the clinic's Supabase database; only the admin can read it) ---------- */
 (function () {
   var f = document.getElementById('nlForm'); if (!f) return;
   var C = window.CLINIC || {}, S = C.s || {}, msg = document.getElementById('nlMsg');
@@ -355,14 +355,15 @@
       msg.className = 'nl-msg err'; msg.textContent = S.nl_bad; return;
     }
     if (f._honey.value) return;
-    var data = {}; new FormData(f).forEach(function (v, k) { data[k] = v; });
-    data.subscribed_at = new Date().toISOString();
+    var cfg = window.BE_SUPA || {};
+    if (!cfg.url || !cfg.key) { msg.className = 'nl-msg err'; msg.textContent = S.nl_err; return; }
+    var data = { email: email.toLowerCase().slice(0, 254), name: ((f.elements.name && f.elements.name.value) || '').trim().slice(0, 80), lang: document.documentElement.lang === 'ar' ? 'ar' : 'en' };
+    var H = { 'Content-Type': 'application/json', apikey: cfg.key, Prefer: 'return=minimal' };
+    if (/^eyJ/.test(cfg.key)) H.Authorization = 'Bearer ' + cfg.key;
     f.classList.add('busy'); btn.textContent = S.nl_sending; msg.textContent = '';
-    fetch('https://formsubmit.co/ajax/' + C.email, {
-      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data)
-    }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (b) { return { ok: r.ok, b: b }; }); })
-      .then(function (res) {
-        var ok = res.ok && String(res.b.success) !== 'false';
+    fetch(cfg.url.replace(/\/$/, '') + '/rest/v1/subscribers', { method: 'POST', headers: H, body: JSON.stringify(data) })
+      .then(function (r) {
+        var ok = r.ok || r.status === 409;   /* 409 = already subscribed: same thank-you message */
         msg.className = 'nl-msg ' + (ok ? 'ok' : 'err'); msg.textContent = ok ? S.nl_ok : S.nl_err;
         if (ok) f.reset();
       })
