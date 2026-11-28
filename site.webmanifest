@@ -1,0 +1,25 @@
+{
+ "name": "Breathe Easy Clinic",
+ "short_name": "Breathe Easy",
+ "lang": "en",
+ "dir": "auto",
+ "description": "Chest doctors in the Fifth Settlement, New Cairo",
+ "start_url": "/",
+ "scope": "/",
+ "display": "browser",
+ "background_color": "#faf8f3",
+ "theme_color": "#0c2a4d",
+ "icons": [
+  {
+   "src": "/assets/apple-touch-icon.png",
+   "sizes": "180x180",
+   "type": "image/png"
+  },
+  {
+   "src": "/assets/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}
