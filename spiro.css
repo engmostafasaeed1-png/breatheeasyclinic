@@ -1,0 +1,123 @@
+/* ---------- Spirometry (lung function test) ---------- */
+.spiro{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--cream) 0%,#fff 38%,var(--cream) 100%)}
+.spiro::before,.spiro::after{content:"";position:absolute;border-radius:50%;pointer-events:none;z-index:0}
+.spiro::before{width:640px;height:640px;top:-240px;inset-inline-end:-220px;background:radial-gradient(circle,rgba(76,174,28,.13),transparent 66%)}
+.spiro::after{width:560px;height:560px;bottom:12%;inset-inline-start:-260px;background:radial-gradient(circle,rgba(43,179,192,.10),transparent 66%)}
+.spiro .wrap{position:relative;z-index:1}
+
+/* intro + hero photo */
+.spiro-top{display:grid;grid-template-columns:1fr 1.12fr;gap:clamp(30px,5vw,70px);align-items:center;margin-bottom:clamp(70px,9vw,110px)}
+.spiro-chips{list-style:none;padding:0;margin:22px 0 30px;display:flex;flex-wrap:wrap;gap:10px}
+.spiro-chips li{display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:.92rem;color:var(--navy);box-shadow:0 6px 16px -12px rgba(12,42,77,.35)}
+.spiro-chips .ic{width:17px;height:17px;color:var(--green)}
+.spiro-cta{display:flex;flex-wrap:wrap;gap:12px}
+.spiro-hero{position:relative;margin:0 0 34px}
+.spiro-hero>img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:32% 50%;border-radius:30px;box-shadow:0 30px 60px -30px rgba(12,42,77,.45)}
+.spiro-hero::before{content:"";position:absolute;inset:-14px -14px 14px 14px;border-radius:34px;border:1.5px dashed rgba(76,174,28,.35);z-index:-1}
+[dir=rtl] .spiro-hero::before{inset:-14px 14px 14px -14px}
+.spiro-graph{position:absolute;inset-inline-start:-30px;bottom:-34px;width:min(310px,64%);padding:14px 16px 8px;border-radius:20px;background:rgba(255,255,255,.84);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.95);box-shadow:0 22px 44px -18px rgba(12,42,77,.38);animation:spFloat 7s ease-in-out infinite}
+.spiro-graph b{display:flex;justify-content:space-between;align-items:center;font-size:.84rem;color:var(--navy);font-weight:600;margin-bottom:4px}
+.spiro-graph b i{font-style:normal;font-size:.74rem;color:var(--green-d);font-weight:500;display:inline-flex;align-items:center;gap:6px;padding:2px 9px;border-radius:999px;background:var(--jade)}
+.spiro-graph b i::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);animation:spPulse 1.6s ease-in-out infinite}
+.sp-svg{width:100%;height:auto;display:block;overflow:visible}
+.sp-axis{stroke:#bccabf;stroke-width:1.3;fill:none}
+.sp-grid{stroke:#e9efeb;stroke-width:1;fill:none}
+.sp-curve{fill:none;stroke:url(#spGrad);stroke-width:3.4;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:spDraw 6.5s cubic-bezier(.3,.6,.3,1) infinite}
+.sp-area{fill:url(#spFill);opacity:0;animation:spShow 6.5s ease infinite}
+.sp-mark{fill:none;stroke:var(--navy);stroke-width:1.1;stroke-dasharray:3 3;opacity:0;animation:spShow 6.5s ease infinite}
+.sp-dot{fill:var(--green);stroke:#fff;stroke-width:2.5;opacity:0;animation:spShow 6.5s ease infinite}
+.sp-tag{font:600 10.5px var(--font);fill:var(--navy);opacity:0;animation:spShow 6.5s ease infinite}
+.sp-txt{font:400 9.5px var(--font);fill:var(--muted)}
+@keyframes spDraw{0%{stroke-dashoffset:1;opacity:1}42%{stroke-dashoffset:0}88%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes spShow{0%,30%{opacity:0}44%,88%{opacity:1}100%{opacity:0}}
+@keyframes spPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.45}}
+@keyframes spFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* section sub-headings */
+.spiro-sub{font-size:clamp(1.4rem,2.4vw,1.95rem);margin-bottom:26px}
+
+/* why it matters */
+.spiro-why{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:clamp(60px,8vw,96px)}
+.sw{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px 26px 24px;transition:transform .35s var(--ease),box-shadow .35s,border-color .35s}
+.sw::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,#2bb3c0,var(--green));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+[dir=rtl] .sw::before{transform-origin:right}
+.sw:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent}
+.sw:hover::before{transform:scaleX(1)}
+.sw i{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--jade),#dff3f4);color:var(--green-d);margin-bottom:16px}
+.sw i .ic{width:24px;height:24px}
+.sw-n{position:absolute;top:20px;inset-inline-end:22px;font-size:1.9rem;font-weight:600;color:rgba(12,42,77,.07);line-height:1}
+.sw h4{margin:0 0 8px;font-size:1.06rem;color:var(--navy);font-weight:600}
+.sw p{margin:0;color:var(--muted);font-size:.95rem}
+
+/* what it measures (navy panel) */
+.spiro-measure{position:relative;overflow:hidden;border-radius:32px;padding:clamp(30px,5vw,56px);color:#dbe6f2;background:radial-gradient(120% 140% at 100% 0%,#1d5a8c 0%,var(--navy-2) 38%,var(--navy) 75%);box-shadow:0 30px 70px -36px rgba(12,42,77,.7);margin-bottom:clamp(60px,8vw,96px)}
+.spiro-measure::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 46px),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 46px);pointer-events:none}
+.sm-head{position:relative;z-index:1;max-width:640px;margin-bottom:30px}
+.sm-head h3{color:#fff;font-size:clamp(1.4rem,2.4vw,1.95rem)}
+.sm-head p{color:#b8c9db;margin:0}
+.sm-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sm{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:22px;padding:24px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .35s var(--ease),background .35s}
+.sm:hover{transform:translateY(-4px);background:rgba(255,255,255,.11)}
+.sm-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.sm-top b{font-size:clamp(1.6rem,2.6vw,2.1rem);font-weight:600;line-height:1.1;background:linear-gradient(90deg,#7fe3ee,#9fdc7b);-webkit-background-clip:text;background-clip:text;color:transparent;font-family:var(--font)}
+.sm-g{width:76px;height:42px;flex:none}
+.sm-g .g0{fill:none;stroke:rgba(255,255,255,.28);stroke-width:2.2;stroke-linecap:round}
+.sm-g .g1{fill:none;stroke:#9fdc7b;stroke-width:3;stroke-linecap:round}
+.sm-g .g2{fill:none;stroke:#7fe3ee;stroke-width:1.4;stroke-dasharray:3 3}
+.sm-g .ring{stroke-dasharray:72 100;stroke-width:5}
+.sm-g circle.g0{stroke-width:5}
+.sm-name{display:block;font-size:.88rem;color:#9fb5cc;margin-bottom:16px}
+.sm dl{margin:0}
+.sm dt{font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;color:#9fdc7b;font-weight:500;margin-bottom:3px}
+[dir=rtl] .sm dt{text-transform:none;letter-spacing:0;font-size:.85rem}
+.sm dd{margin:0 0 14px;color:#e8f0f8;font-size:.95rem;line-height:1.6}
+.sm dd:last-child{margin-bottom:0}
+
+/* how the test works */
+.spiro-how{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,64px);align-items:start}
+.sh-pics{position:sticky;top:110px;padding-bottom:22%}
+.sh-pics img{height:auto;border-radius:24px;box-shadow:0 24px 50px -28px rgba(12,42,77,.5);object-fit:cover}
+.sh-a{width:82%;aspect-ratio:4/3}
+.sh-b{position:absolute;width:62%;aspect-ratio:4/3;inset-inline-end:0;bottom:0;border:6px solid #fff}
+.sh-steps{list-style:none;padding:0;margin:0 0 26px;position:relative}
+.sh-steps::before{content:"";position:absolute;top:18px;bottom:18px;inset-inline-start:19px;width:2px;background:linear-gradient(var(--green),rgba(76,174,28,.1))}
+.sh-steps li{position:relative;display:flex;gap:18px;padding-bottom:20px}
+.sh-steps li>span{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid var(--green);color:var(--green-d);font-weight:600;z-index:1;box-shadow:0 0 0 6px var(--cream)}
+.sh-steps h4{margin:6px 0 4px;color:var(--navy);font-size:1.05rem;font-weight:600}
+.sh-steps p{margin:0;color:var(--muted);font-size:.95rem}
+.sh-prep{background:var(--jade);border-radius:22px;padding:22px 24px;border:1px solid var(--jade-2)}
+.sh-prep h4{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:var(--navy);font-size:1.05rem;font-weight:600}
+.sh-prep h4 .ic{color:var(--green-d)}
+.sh-prep ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.sh-prep li{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;color:var(--ink)}
+.sh-prep li .ic{width:18px;height:18px;margin-top:4px;color:var(--green)}
+
+/* teaser link under the service cards */
+.spiro-teaser{display:flex;align-items:center;gap:18px;margin-top:22px;padding:18px 22px;border-radius:var(--r);text-decoration:none;color:#fff;background:linear-gradient(110deg,var(--navy) 0%,var(--navy-2) 55%,#1f6d7a 100%);box-shadow:var(--shadow);transition:transform .3s var(--ease),box-shadow .3s}
+.spiro-teaser:hover{transform:translateY(-3px);box-shadow:0 20px 40px -20px rgba(12,42,77,.6)}
+.st-ic{flex:none;display:grid;place-items:center;width:50px;height:50px;border-radius:16px;background:rgba(255,255,255,.12);color:#9fdc7b}
+.st-ic .ic{width:26px;height:26px}
+.st-tx{flex:1;min-width:0}
+.st-tx b{display:block;font-weight:600;font-size:1.05rem}
+.st-tx small{display:block;color:#b8c9db;font-size:.92rem}
+.st-go{flex:none;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:var(--green);font-weight:500;font-size:.95rem}
+
+@media (max-width:980px){
+  .spiro-top,.spiro-how{grid-template-columns:1fr}
+  .sh-pics{position:relative;top:auto}
+  .spiro-why,.sm-grid{grid-template-columns:1fr 1fr}
+  .spiro-graph{inset-inline-start:12px}
+}
+@media (max-width:640px){
+  .spiro-why,.sm-grid{grid-template-columns:1fr}
+  .spiro-graph{position:relative;inset:auto;width:auto;margin:-46px 14px 0;animation:none}
+  .spiro-hero{margin-bottom:0}
+  .spiro-hero::before{display:none}
+  .spiro-teaser{flex-wrap:wrap}
+  .st-go{margin-inline-start:68px}
+}
+@media (prefers-reduced-motion:reduce){
+  .sp-curve{animation:none;stroke-dashoffset:0}
+  .sp-area,.sp-mark,.sp-dot,.sp-tag{animation:none;opacity:1}
+  .spiro-graph,.spiro-graph b i::before{animation:none}
+}

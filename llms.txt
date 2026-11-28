@@ -10,6 +10,7 @@
 - Chest consultations (a cough that keeps coming back, shortness of breath, chest allergy, questions about a chest scan)
 - Follow-up visits
 - Bronchoscopy referral consultations (with Dr. Hedya)
+- Spirometry (lung function test): measures FVC, FEV1 and the FEV1/FVC ratio to diagnose and follow asthma, COPD and other lung conditions, check treatment, and assess breathing before surgery or for work reports
 
 ## Opening hours (Cairo time)
 - Saturday 4–7 pm (Dr. Hedya)
